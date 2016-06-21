@@ -22,15 +22,16 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Paperclip file upload
+gem "paperclip", "~> 5.0.0.beta1"
+# Slim Template
+gem 'slim'
+# Devise authentication
+gem 'devise'
+# Paginate
+gem 'will_paginate', '~> 3.1.0'
+# Beauty link
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
