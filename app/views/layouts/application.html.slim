@@ -12,10 +12,8 @@ html
   body
     header
       nav id="navbar"
-        = render 'layouts/navbar'
+        = render 'layouts/header'
     #main-wrapper = content_for?(:content) ? yield(:content) : yield
 
-    footer
-      | Footer
-      
+    = render 'layouts/footer'
     = yield(:scripts)

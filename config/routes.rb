@@ -13,13 +13,16 @@ Rails.application.routes.draw do
                               confirmations: 'employers/confirmations'
                             }
 
-  resources :employers, only: [:show, :index]
+  resources :employers, only: [:show, :index] do
+    get 'jobmanager' => 'employers#manage'
+  end
 
   devise_for :employees, controllers: {
     registrations: 'employees/registrations',
     sessions: 'employees/sessions',
     passwords: 'employees/passwords'
   }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

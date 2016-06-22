@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+	before_action :check_employer, only: [:new, :create, :edit]
 
 	def index
 		@jobs = Job.all
@@ -9,7 +10,8 @@ class JobsController < ApplicationController
 	end
 
 	def create
-		@job = Job.new(job_params)
+		employer = current_employer
+		@job = current_employer.jobs.build(job_params)
 		if @job.save
 			flash[:success] = "Post job success!"
 			redirect_to @job
@@ -48,8 +50,13 @@ class JobsController < ApplicationController
 	end
 
 	private
+		def check_employer
+			if current_employer.nil?
+				redirect_to root_path
+			end
+		end
 
-	def job_params
-		params.require(:job).permit(:name, :negotiable, :min_salary, :max_salary, :detail, :requirement, :offer)
-	end
+		def job_params
+			params.require(:job).permit(:name, :negotiable, :min_salary, :max_salary, :detail, :requirement, :offer)
+		end
 end

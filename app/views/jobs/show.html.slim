@@ -1,5 +1,8 @@
-= link_to('Edit', edit_job_path(@job.id))
-| |
-= link_to('Delete', job_path(@job.id), method: 'delete')
+
+- if !current_employer.nil? && current_employer[:id] == @job[:employer_id]
+	.edit-delete
+		= link_to('Edit', edit_job_path(@job.id))
+		| |
+		= link_to('Delete', job_path(@job.id), method: 'delete')
 br
 = @job.name

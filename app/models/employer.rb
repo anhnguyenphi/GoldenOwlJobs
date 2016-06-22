@@ -28,4 +28,11 @@ class Employer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #associations
+  has_many :jobs, dependent: :destroy
+
+  #validate
+  #validates :name, presence: true
+
+
 end
