@@ -1,10 +1,15 @@
 - content_for :content do
+	- flash.each do |key, value|
+		div class="alert alert-#{key}" role="alert" = value
 	.container
-		h1 Jobs
-		- if current_employee.nil?
-			= link_to('sign in', new_employee_session_path)
-		- else
-			= link_to('log out', destroy_employee_session_path , method: :delete)
+		= link_to('post job', new_job_path)
+		hr /
 		= yield
+
+- content_for :stylesheets do
+	= stylesheet_link_tag 'job'
+	
+- content_for :scripts do
+	= javascript_include_tag 'job'
 
 = render template: 'layouts/application'
