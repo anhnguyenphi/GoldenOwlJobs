@@ -1,6 +1,13 @@
 - content_for :content do
+	- flash.each do |key, value|
+		div class="alert alert-#{key}" role="alert" = value
 	.container
-		h1 Jobs
+		h1 = link_to("Jobs", jobs_path)
+		= link_to('post job', new_job_path)
+		hr /
 		= yield
+
+- content_for :stylesheets do
+	= javascript_include_tag 'job'
 
 = render template: 'layouts/application'
