@@ -29,8 +29,6 @@ gem "paperclip", "~> 5.0.0.beta1"
 # Slim Template
 gem 'slim'
 
-gem 'sprockets-rails'
-
 
 # Devise authentication
 gem 'devise'

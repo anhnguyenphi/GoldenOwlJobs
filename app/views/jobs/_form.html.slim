@@ -1,4 +1,4 @@
-= form_for @job, action: "#{yield(:action)}" do |f|
+= form_for @job, action: action do |f|
 	- if @job.errors.any?
 		#error_explanation
 			h2
@@ -26,7 +26,7 @@
 	.form-group
 		= f.label :offer
 		= f.text_area :offer, class: "form-control"
-	button type="submit" class="btn btn-default" Post
+	button type="submit" class="btn btn-default" = submit
 
 javascript:
 	$("#negotiable").change(function() {

@@ -1,0 +1,6 @@
+h1 Employers#show
+p = @employer.email
+p = raw sanitize(simple_format(@employer.full_description), :tags => %w(br p) )
+//p = @employer.full_description
+p = @employer.offer
+p = link_to 'Edit', edit_employer_registration_path, method: :get
