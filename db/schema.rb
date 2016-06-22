@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621052210) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160621070856) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -55,5 +56,17 @@ ActiveRecord::Schema.define(version: 20160621052210) do
 
   add_index "employers", ["email"], name: "index_employers_on_email", unique: true
   add_index "employers", ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "name",        default: "",   null: false
+    t.boolean  "negotiable",  default: true
+    t.integer  "min_salary",  default: 0
+    t.integer  "max_salary",  default: 0
+    t.text     "detail",      default: "",   null: false
+    t.text     "requirement", default: "",   null: false
+    t.text     "offer",       default: "",   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
 end

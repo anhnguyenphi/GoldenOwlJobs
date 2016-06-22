@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  root "jobs#index"
+
+  resources :jobs
+
   devise_for :employers
   devise_for :employees
   # The priority is based upon order of creation: first created -> highest priority.

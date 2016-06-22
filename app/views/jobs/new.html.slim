@@ -1,0 +1,28 @@
+= form_for @job, url: {action: "create"} do |f|
+	- if @job.errors.any?
+		#error_explanation
+			h2
+				= pluralize(@newTopic.errors.count, "error")
+				| prohibited
+        | this topic from being saved:
+	.form-group
+		= f.label :name, 'Job name'
+		= f.text_field :name, class: "form-control"
+	.form-group
+		= f.check_box :negotiable, "Can view salary?"
+	.form-group
+		.salary_container
+			= f.label :min_salary, "Min salary"
+			= f.text_field :min_salary, class: "form-control"
+			= f.label :max_salary, "Max salary"
+			= f.text_field :max_salary, class: "form-control"
+	.form-group
+		= f.label :detail, "Job Detail"
+		= f.text_area :detail, class: "form-control"
+	.form-group
+		= f.label :requirement
+		= f.text_area :requirement, class: "form-control"
+	.form-group
+		= f.label :offer
+		= f.text_area :offer, class: "form-control"
+	button type="submit" class="btn btn-default" Post
