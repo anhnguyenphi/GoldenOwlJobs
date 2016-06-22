@@ -7,9 +7,8 @@
 		= yield
 
 - content_for :stylesheets do
-	= stylesheet_link_tag 'job'
-	
+	= stylesheet_link_tag 'jobs'
 - content_for :scripts do
-	= javascript_include_tag 'job'
+	= javascript_include_tag 'jobs'
 
 = render template: 'layouts/application'

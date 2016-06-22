@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   root "jobs#index"
 
+  # Routing for jobs
   resources :jobs
   
+  # Routing for employer
   devise_for :employers,
               controllers: {
                               sessions: 'employers/sessions',
@@ -15,12 +17,17 @@ Rails.application.routes.draw do
 
   resources :employers, only: [:show, :index]
 
+  # Routing for employee
   devise_for :employees, controllers: {
     registrations: 'employees/registrations',
     sessions: 'employees/sessions',
     passwords: 'employees/passwords'
   }
 
+  # Routing for catigory
+  resources :categories
+
+  # Routing for the services pages of employer
   get 'services_for_employer' => 'employers#info'
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+	$("#negotiable").change(function() {
+		if (this.checked) {
+			$("#salary_container").show();
+		} else {
+			$("#salary_container").hide();
+		}
+	})
