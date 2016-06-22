@@ -12,8 +12,7 @@ html
 
     = csrf_meta_tags
   body
-    #navbar
-        h1 navbar
+    = render 'layouts/header'
     #content = content_for?(:content) ? yield(:content) : yield
 		
 	/ CDN bootstrap js

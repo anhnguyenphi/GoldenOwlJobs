@@ -143,6 +143,10 @@ GEM
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
+    slim-rails (3.1.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (~> 3.0)
     spring (1.7.1)
     sprockets (3.6.1)
       concurrent-ruby (~> 1.0)
@@ -186,6 +190,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   slim
+  slim-rails
   spring
   sqlite3
   turbolinks
@@ -194,4 +199,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
