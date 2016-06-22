@@ -1,7 +1,21 @@
 Rails.application.routes.draw do
+
   root "jobs#index"
 
   resources :jobs
+
+  devise_for :employers,
+              controllers: {
+                              sessions: 'employers/sessions',
+                              registrations: 'employers/registrations',
+                              passwords: 'employers/passwords',
+                              unlocks: 'employers/unlocks',
+                              confirmations: 'employers/confirmations'
+                            }
+  devise_for :employees
+
+
+  resources :employers, only: [:show, :index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
