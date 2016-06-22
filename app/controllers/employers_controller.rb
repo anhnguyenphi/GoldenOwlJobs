@@ -6,4 +6,8 @@ class EmployersController < ApplicationController
   def index
   	@employers = Employer.all
   end
+
+  def info
+  	render 'services'
+  end
 end
