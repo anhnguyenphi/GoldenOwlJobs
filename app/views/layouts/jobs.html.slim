@@ -1,6 +1,10 @@
 - content_for :content do
 	.container
 		h1 Jobs
+		- if current_employee.nil?
+			= link_to('sign in', new_employee_session_path)
+		- else
+			= link_to('log out', destroy_employee_session_path , method: :delete)
 		= yield
 
 = render template: 'layouts/application'
