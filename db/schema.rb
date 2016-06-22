@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160621070856) do
 
   create_table "employees", force: :cascade do |t|
@@ -48,10 +47,10 @@ ActiveRecord::Schema.define(version: 20160621070856) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name",                   default: "", null: false
-    t.string   "short_description",      default: "", null: false
-    t.string   "full_description",       default: "", null: false
-    t.string   "offer",                  default: "", null: false
-    t.string   "address",                default: "", null: false
+    t.string   "short_description",      default: ""
+    t.string   "full_description",       default: ""
+    t.string   "offer",                  default: ""
+    t.string   "address",                default: ""
   end
 
   add_index "employers", ["email"], name: "index_employers_on_email", unique: true
