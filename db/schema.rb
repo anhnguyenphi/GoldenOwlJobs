@@ -70,5 +70,4 @@ ActiveRecord::Schema.define(version: 20160622051338) do
   end
 
   add_index "jobs", ["employer_id"], name: "index_jobs_on_employer_id"
-
 end
