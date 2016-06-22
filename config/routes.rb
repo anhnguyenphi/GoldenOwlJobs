@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   root "jobs#index"
 
   resources :jobs
-
-  devise_for :employees
   
   devise_for :employers,
               controllers: {
@@ -17,6 +15,11 @@ Rails.application.routes.draw do
 
   resources :employers, only: [:show, :index]
 
+  devise_for :employees, controllers: {
+    registrations: 'employees/registrations',
+    sessions: 'employees/sessions',
+    passwords: 'employees/passwords'
+  }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
