@@ -2,7 +2,7 @@
 	- if @job.errors.any?
 		#error_explanation
 			h2
-				= pluralize(@newTopic.errors.count, "error")
+				= pluralize(@job.errors.count, "error")
 				| prohibited
         | this topic from being saved:
 	.form-group
@@ -24,15 +24,10 @@
 		= f.label :requirement
 		= f.text_area :requirement, class: "form-control"
 	.form-group
+		= f.label 'categories'
+		select class="form-control" id="job_categories" name="job[categories][]" multiple="true"
+			= options_for_select(Category.all.collect {|c| [c.name, c.name]})
+	.form-group
 		= f.label :offer
 		= f.text_area :offer, class: "form-control"
-	button type="submit" class="btn btn-default" = submit
-
-javascript:
-	$("#negotiable").change(function() {
-		if (this.checked) {
-			$("#salary_container").show();
-		} else {
-			$("#salary_container").hide();
-		}
-	})
+	button type="submit" class="btn btn-default" Post

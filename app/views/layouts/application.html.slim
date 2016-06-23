@@ -4,16 +4,16 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title GoldenOwlJobs
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     
     = yield(:stylesheets)
 
     = csrf_meta_tags
   body
-    header
-      nav id="navbar"
-        = render 'layouts/header'
+    = render 'layouts/header'
+    
     #main-wrapper = content_for?(:content) ? yield(:content) : yield
 
     = render 'layouts/footer'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = yield(:scripts)
