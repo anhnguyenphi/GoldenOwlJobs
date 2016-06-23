@@ -24,18 +24,14 @@
 		= f.label :requirement
 		= f.text_area :requirement, class: "form-control"
 	.form-group
+		= f.label 'categories'
+		select class="form-control" id="job_categories" name="job[categories][]" multiple="true"
+			= options_for_select(Category.all.collect {|c| [c.name, c.name]})
+	.form-group
 		= f.label :offer
 		= f.text_area :offer, class: "form-control"
-	button type="submit" class="btn btn-default" = submit
 
-select.dropdown-menu multiple="multiple" 
-  option value="monday"  Monday
-  option value="tuesday"  Tuesday
-  option value="wednesday"  Wednesday
-  option value="thursday"  Thursday
-  option value="friday"  Friday
-  option value="saturday"  Saturday
-  option value="sunday"  Sunday
+	button type="submit" class="btn btn-default" Post
 
 
 javascript:

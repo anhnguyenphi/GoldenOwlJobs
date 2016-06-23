@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
 	before_action :check_employer_when_create, only: [:new, :create]
 	before_action :check_employer_when_delete_update, only: [:destroy, :edit, :update]
+	include JobsHelper
 
 	def index
 		@jobs = Job.all
@@ -13,7 +14,8 @@ class JobsController < ApplicationController
 	def create
 		employer = current_employer
 		@job = current_employer.jobs.build(job_params)
-		if @job.save
+		
+		if @job.save && job_categories[:categories] && build_categies_by_name?(job_categories[:categories])
 			flash[:success] = "Post job success!"
 			redirect_to @job
 		else
@@ -65,6 +67,11 @@ class JobsController < ApplicationController
 		end
 
 		def job_params
-			params.require(:job).permit(:name, :negotiable, :min_salary, :max_salary, :detail, :requirement, :offer)
+			params.require(:job).permit(:name, :negotiable, :min_salary, 
+				:max_salary, :detail, :requirement, :offer)
+		end
+
+		def job_categories
+			params.require(:job).permit(:categories => [])
 		end
 end

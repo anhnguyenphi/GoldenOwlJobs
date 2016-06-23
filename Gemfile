@@ -28,10 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "paperclip", "~> 5.0.0.beta1"
 # Slim Template
 gem 'slim'
-
-gem 'sprockets-rails'
-
-
+# Mutiple tagging
+gem "select2-rails"
 # Devise authentication
 gem 'devise'
 # Paginate

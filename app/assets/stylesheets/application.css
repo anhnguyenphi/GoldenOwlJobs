@@ -11,5 +11,11 @@
  * file per style scope.
  *
  *= require bootstrap.min
+ *= require select2
  *= require_self
  */
+
+ * {
+ 	padding: 0;
+ 	margin: 0;
+ }
