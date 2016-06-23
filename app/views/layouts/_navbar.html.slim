@@ -1,12 +1,13 @@
-.nav.navbar
-	h1 = link_to "Jobs", root_path
+nav.navbar.navbar-default
+	.container
+		.navbar-header
+			= link_to "Jobs", root_path, class: "navbar-brand"
 
-	- if current_employer.nil?
-		ul
-			li = link_to "Sign up", new_employer_session_path, method: :get
-			li = link_to "Create new Account", new_employer_registration_path, method: :get
-	- else
-		ul
-			li = link_to "Post Jobs", new_job_path, method: :get
-			li = link_to "Profile", employer_path(current_employer), method: :get
-			li = link_to "Log out",  destroy_employer_session_path, method: :delete
+		ul.nav.navbar-nav.navbar-right
+			- if current_employer.nil?
+					li = link_to "Sign in", new_employer_session_path, method: :get
+					li = link_to "Create new Account", new_employer_registration_path, method: :get
+			- else
+					li = link_to "Post Jobs", new_job_path, method: :get
+					li = link_to "Profile", employer_path(current_employer), method: :get
+					li = link_to "Log out",  destroy_employer_session_path, method: :delete

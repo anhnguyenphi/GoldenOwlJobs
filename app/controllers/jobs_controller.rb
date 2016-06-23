@@ -46,12 +46,19 @@ class JobsController < ApplicationController
 	def destroy
 		@job = Job.find(params[:id])
 		@job.destroy
-		redirect_to jobs_path
+		redirect_to params[:redirect_path]
 	end
 
 	private
-		def check_employer
+		def check_employer_when_create
 			if current_employer.nil?
+				redirect_to root_path
+			end
+		end
+
+		def check_employer_when_delete_update
+			job = Job.find(params[:id])
+			if current_employer.nil? && current_employer[:id] == job[:employer_id]
 				redirect_to root_path
 			end
 		end

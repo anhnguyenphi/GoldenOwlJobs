@@ -2,7 +2,7 @@
 	- if @job.errors.any?
 		#error_explanation
 			h2
-				= pluralize(@newTopic.errors.count, "error")
+				= pluralize(@job.errors.count, "error")
 				| prohibited
         | this topic from being saved:
 	.form-group
@@ -27,6 +27,16 @@
 		= f.label :offer
 		= f.text_area :offer, class: "form-control"
 	button type="submit" class="btn btn-default" = submit
+
+select.dropdown-menu multiple="multiple" 
+  option value="monday"  Monday
+  option value="tuesday"  Tuesday
+  option value="wednesday"  Wednesday
+  option value="thursday"  Thursday
+  option value="friday"  Friday
+  option value="saturday"  Saturday
+  option value="sunday"  Sunday
+
 
 javascript:
 	$("#negotiable").change(function() {

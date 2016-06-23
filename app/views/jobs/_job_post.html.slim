@@ -1,0 +1,6 @@
+h3 = link_to job.name, job_path(job[:id]), method: :get
+
+p = job.detail
+.edit
+	p = link_to "Edit", edit_job_path(job[:id]), method: :get
+	p = link_to "Delete", job_path(job[:id],redirect_path: employer_jobmanager_path(job[:employer_id])), method: :delete, data: {confirm: " chac chua"}

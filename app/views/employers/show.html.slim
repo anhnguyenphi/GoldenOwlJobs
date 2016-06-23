@@ -1,6 +1,15 @@
 h1 Employers#show
-h3 = link_to "Manage Jobs", jobs_path, method: :get
-p = @employer.email
-p = @employer.full_description
-p = @employer.offer
+h3 = link_to "Jobs", employer_jobmanager_path(@employer[:id]), method: :get
+
+.employer-infomation
+	.employer-name
+		h3 = @employer.name
+	.employer-email
+		h4 Email
+		p = @employer.email
+
+	.employer-description
+		p = simple_format(@employer.full_description)
+
+
 p = link_to 'Edit', edit_employer_registration_path, method: :get

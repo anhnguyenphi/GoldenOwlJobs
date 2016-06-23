@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get 'jobmanager' => 'employers#manage'
   end
 
+  get 'search' => 'search#job'
+
   devise_for :employees, controllers: {
     registrations: 'employees/registrations',
     sessions: 'employees/sessions',

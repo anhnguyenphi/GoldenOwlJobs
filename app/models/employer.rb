@@ -32,7 +32,7 @@ class Employer < ActiveRecord::Base
   has_many :jobs, dependent: :destroy
 
   #validate
-  #validates :name, presence: true
+  validates :name, presence: true
 
 
 end
