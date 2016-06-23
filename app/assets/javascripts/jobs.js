@@ -5,3 +5,7 @@
 			$("#salary_container").hide();
 		}
 	})
+
+$("#job_categories").select2({
+  tags: true
+})

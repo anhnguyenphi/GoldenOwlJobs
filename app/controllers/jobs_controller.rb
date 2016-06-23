@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+	include JobsHelper
 
 	def index
 		@jobs = Job.all
@@ -10,7 +11,7 @@ class JobsController < ApplicationController
 
 	def create
 		@job = Job.new(job_params)
-		if @job.save
+		if @job.save && job_categories[:categories] && build_categies_by_name?(job_categories[:categories])
 			flash[:success] = "Post job success!"
 			redirect_to @job
 		else
@@ -50,6 +51,11 @@ class JobsController < ApplicationController
 	private
 
 	def job_params
-		params.require(:job).permit(:name, :negotiable, :min_salary, :max_salary, :detail, :requirement, :offer)
+		params.require(:job).permit(:name, :negotiable, :min_salary, 
+			:max_salary, :detail, :requirement, :offer)
+	end
+
+	def job_categories
+		params.require(:job).permit(:categories => [])
 	end
 end
