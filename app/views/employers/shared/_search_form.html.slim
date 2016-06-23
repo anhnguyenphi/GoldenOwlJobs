@@ -1,0 +1,6 @@
+.col-lg-6.col-lg-offset-3
+    .input-group
+    	= form_for(:search, url: search_path) do |f|
+    		= f.text_field :keyword, class: "form-control"
+      span class="input-group-btn"
+        button class="btn btn-default" type="button" Go!
