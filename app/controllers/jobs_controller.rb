@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
-	before_action :check_employer, only: [:new, :create, :edit]
+	before_action :check_employer_when_create, only: [:new, :create]
+	before_action :check_employer_when_delete_update, only: [:destroy, :edit, :update]
 
 	def index
 		@jobs = Job.all
