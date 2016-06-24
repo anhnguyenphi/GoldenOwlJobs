@@ -26,7 +26,13 @@
 	.form-group
 		= f.label 'categories'
 		select class="form-control" id="job_categories" name="job[categories][]" multiple="true"
-			= options_for_select(Category.all.collect {|c| [c.name, c.name]})
+			= options_for_select(Category.all.collect {|category| [category.name, category.name]}, 
+													:selected => @job.categories.collect {|category| category.name})
+	.form-group
+		= f.label 'cities'
+		select class="form-control" id='job_cities' name="job[cities][]" multiple="true"
+			= options_for_select(City.all.collect {|city| [city.name, city.id]}, 
+													:selected => @job.cities.collect {|city| city.id})
 	.form-group
 		= f.label :offer
 		= f.text_area :offer, class: "form-control"

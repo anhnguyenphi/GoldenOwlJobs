@@ -1,3 +1,4 @@
+// clicked negotiable checkbox of job's form
 $("#negotiable").change(function() {
 	if (this.checked) {
 		$("#salary_container").show();
@@ -9,3 +10,5 @@ $("#negotiable").change(function() {
 $("#job_categories").select2({
   tags: true
 })
+
+$("#job_cities").select2()
