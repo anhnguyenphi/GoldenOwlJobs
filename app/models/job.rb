@@ -11,6 +11,16 @@ class Job < ActiveRecord::Base
 	# scope
 	default_scope -> { order(created_at: :desc) }
 
+	# query by keyword
+	scope :keyword, lambda { |keyword|
+		joins(:employer)
+		.where("jobs.name LIKE '%' || ? || '%' 
+						OR employers.name LIKE '%' || ? || '%'", 
+						keyword, 
+						keyword)
+		.distinct
+	}
+
 	# query by name of job
 	scope :job_name, lambda { |name|
 		where("jobs.name LIKE '%' || ? || '%'", name)
