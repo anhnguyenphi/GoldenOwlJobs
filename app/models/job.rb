@@ -13,21 +13,26 @@ class Job < ActiveRecord::Base
 
 	# query by name of job
 	scope :job_name, lambda { |name|
-		where('jobs.name LIKE ?', "%#{name}%")
+		where("jobs.name LIKE '%' || ? || '%'", name)
 	}
 
 	#query by categories
 	scope :categories, lambda { |categories|
 		joins(:categories)
-		.where('categories.name IN (?)', categories)
+		.where("categories.name IN (?)", categories)
 		.distinct
 	}
 
 	# query by cities
 	scope :cities, lambda { |cities|
 		joins(:cities)
-		.where('cities.name IN (?)', cities)
+		.where("cities.name IN (?)", cities)
 		.distinct
 	}
 
+	# query by employer
+	scope :employer, lambda { |name|
+		joins(:employer)
+		.where("employers.name LIKE '%' || ? || '%'", name)
+	}
 end
