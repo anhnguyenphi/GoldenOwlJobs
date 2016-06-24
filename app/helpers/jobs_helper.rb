@@ -5,15 +5,10 @@ module JobsHelper
 	# + RETURN: true if success else false
 	def build_categies_by_name?(categories)
 		categories.each do |c|
-			category = Category.where(name: c).first
+			category = Category.find_or_create_by(name: c) if c.nil?
 			if category.nil?
-				# if not exist category, create new
-				category = Category.new(name: c)
-				if category.save
-					@job.categories << category
-				else
-					return false
-				end
+				# if name is not nil
+				return false
 			else
 				# if the category was exist
 				@job.categories << category
