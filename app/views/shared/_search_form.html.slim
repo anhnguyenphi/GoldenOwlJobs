@@ -1,18 +1,14 @@
-.search_box
-	.search_form.clearfix
-		= form_for(:search, url: search_path) do |f|
-			.col-lg-4.search-key
-				.key-content
-					= f.text_field :keyword, class: "form-control", placeholder: "Input keyword"
+.search-box
+	= form_for(:search, url: search_path) do |f|
+		.row
+			.col-lg-12.keyword.col-xs-12
+				= f.text_field :keyword, placeholder: "Input keyword"
+				.icon-search
+					= f.submit "Search", type: :image, src: image_path('icon/search.png')
 
-			.col-lg-3.search-key
-				.key-content
-					= f.select :category, options_for_select([["Select One", ""], "Cell", "Work", "Office", "Home", "Other"]), class: "form-control", multiple: true
-				//= f.text_field :category, class: "form-control"
+		.row
+			.col-lg-6
+				= f.text_field :categories
 
-			.col-lg-3.search-key
-				.key-content
-					= f.text_field :city, class: "form-control"
-
-			.col-lg-2
-				= f.submit "Search", class: "btn btn-default"
+			.col-lg-6
+				= f.text_field :city
