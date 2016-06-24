@@ -9,7 +9,9 @@
 		.row
 			.select-group
 				.col-lg-6.categories-key
-					= f.text_field :categories
+					select class="form-control" id="job_categories_search" name="search[categories][]" multiple="true"
+						= options_for_select(Category.all.collect {|category| [category.name, category.name]})
 
 				.col-lg-6.city-key
-					= f.text_field :city
+					select class="form-control" id='job_cities' name="search[cities][]" multiple="true"
+						= options_for_select(City.all.collect {|city| [city.name, city.id]})
