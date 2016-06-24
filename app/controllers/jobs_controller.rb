@@ -14,8 +14,13 @@ class JobsController < ApplicationController
 	def create
 		employer = current_employer
 		@job = current_employer.jobs.build(job_params)
-		
-		if @job.save && job_categories[:categories] && build_categies_by_name?(job_categories[:categories])
+		# check valid infomation
+		valid = (@job.save && 
+			job_categories[:categories] && 
+			build_categies_by_name?(job_categories[:categories]) &&
+			build_cities_by_id?(job_cities[:cities]))
+
+		if valid
 			flash[:success] = "Post job success!"
 			redirect_to @job
 		else
@@ -73,5 +78,9 @@ class JobsController < ApplicationController
 
 		def job_categories
 			params.require(:job).permit(:categories => [])
+		end
+
+		def job_cities
+			params.require(:job).permit(:cities => [])
 		end
 end
