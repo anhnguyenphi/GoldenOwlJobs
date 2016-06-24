@@ -6,6 +6,6 @@
 
 		= render 'shared/search_form'
 
-div.content
-	.jobs-content.container
-		= render 'jobs/content/show_jobs', jobs: @jobs
+div.jobs
+	- @jobs.each do |job|
+		h3 = link_to(job.name, job_path(job.id))

@@ -1,15 +1,14 @@
 .search-box
 	= form_for(:search, url: search_path) do |f|
 		.row
-			.col-lg-11.keyword.col-xs-11
+			.col-lg-12.keyword.col-xs-12
 				= f.text_field :keyword, placeholder: "Input keyword"
 				.icon-search
 					= f.submit "Search", type: :image, src: image_path('icon/search.png')
 
 		.row
-			.select-group
-				.col-lg-6.categories-key
-					= f.text_field :categories
+			.col-lg-6
+				= f.text_field :categories
 
-				.col-lg-6.city-key
-					= f.text_field :city
+			.col-lg-6
+				= f.text_field :city

@@ -1,8 +1,5 @@
 .banner {
 	background-color: #eee;
-	height: 500px;
-	display: flex;
-	align-items: center;
 	h1 {
 		text-align: center;
 	}
@@ -36,49 +33,8 @@
 			}
 		}
 
-
-
 		.select-group {
-			margin-top: 20px;
-			input {
-				width: 100%;
-				font-size: 20px;
-			}
-		}
-	}
-}
-
-
-.jobs-content {
-	.logo {
-		img {
-			width: 100%;
-		}
-	}
-
-	.job-descriptions {
-		ul {
-			list-style: none;
-			li {
-				display: inline;
-				padding-left: 10px;
-				padding-right: 10px;
-			}
-		}
-
-
-		.posted-time {
-			.col-md-1 {
-				padding-left: 10px;
-				padding-right: 10px;
-			}
-			img {
-				width: 100%;
-			}
-
-			p {
-				font-size: 18px;
-			}
+			margin-top: 50px;
 		}
 	}
 }
