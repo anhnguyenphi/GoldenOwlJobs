@@ -1,8 +1,13 @@
+.navbar {
+	margin-bottom: 0px;
+}
 .banner {
-	background-color: #eee;
+	//background-color: #eee;
 	height: 500px;
 	display: flex;
 	align-items: center;
+	background-image: url('/assets/background/job-bg.jpg');
+	background-size: cover;
 	h1 {
 		text-align: center;
 	}

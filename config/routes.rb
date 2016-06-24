@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get 'jobmanager' => 'employers#manage'
   end
 
-  post 'search' => 'search#show'
+  post 'search' => 'jobs#search'
 
   # Routing for employee
   devise_for :employees, controllers: {

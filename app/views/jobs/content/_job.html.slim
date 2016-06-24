@@ -7,7 +7,7 @@
 		.row
 			.col-md-8
 				.job-descriptions
-					h3.title = job.name
+					h3.title = link_to job.name, job_path(job), method: :get
 					.row.posted-time
 						.col-md-1
 							= image_tag 'icon/calendar.png'
