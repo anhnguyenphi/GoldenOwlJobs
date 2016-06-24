@@ -18,9 +18,9 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    super
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -49,7 +49,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) { |u| 
       u.permit(:email, :password, :password_confirmation, :current_password,
-              :first_name, :last_name)
+              :first_name, :last_name, :city_id)
     }
   end
 

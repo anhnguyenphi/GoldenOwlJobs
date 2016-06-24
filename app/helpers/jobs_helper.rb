@@ -22,4 +22,20 @@ module JobsHelper
 		return true
 	end
 
+	# make relationship between job and city by giving array city_ids
+	# Params:
+	# + categories : array city_id
+	# + RETURN: true if success else false
+	def build_cities_by_id?(cities)
+		cities.each do |c|
+			city = City.find(c)
+			if city.nil?
+				return false
+			else
+				@job.cities << city
+			end
+		end
+		return true
+	end
+	
 end
