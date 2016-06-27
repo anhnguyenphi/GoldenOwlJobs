@@ -1,0 +1,8 @@
+= stylesheet_link_tag "job_index"
+h1 Job for You
+
+= render 'shared/search_form'
+
+div.jobs
+	- @jobs.each do |job|
+		h3 = link_to(job.name, job_path(job.id))
