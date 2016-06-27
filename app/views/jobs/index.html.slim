@@ -1,7 +1,10 @@
 = stylesheet_link_tag "job_index"
-h1 Job for You
 
-= render 'shared/search_form'
+.banner
+	.container
+		h1 Find Jobs
+
+		= render 'shared/search_form'
 
 div.jobs
 	- @jobs.each do |job|
