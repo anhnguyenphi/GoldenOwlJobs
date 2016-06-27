@@ -1,0 +1,13 @@
+class SearchController < ApplicationController
+	def show
+		@search_key = search_params
+		@jobs = Job.filter(search_params)
+		#render json: @job
+	end
+
+
+	private
+		def search_params
+			params.required(:search).permit(:keyword, :categories => [], :cities => [])
+		end
+end

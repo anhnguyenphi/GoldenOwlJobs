@@ -1,0 +1,26 @@
+.row
+	.col-md-3
+		.logo
+			= image_tag 'icon/logo.png'
+
+	.col-md-9
+		.row
+			.col-md-8
+				.job-descriptions
+					h3.title = job.name
+					.row.posted-time
+						.col-md-1
+							= image_tag 'icon/calendar.png'
+						.col-md-5
+							p 
+								| Posted: 
+								= job[:created_at].strftime("%d/%m/%Y")
+					ul.tag
+						- job.categories.each do |category|
+							li 
+								a[href="#"] = category.name
+
+			.col-md-4
+				.location-salary
+					p Ho Chi Minh
+					p 1000$

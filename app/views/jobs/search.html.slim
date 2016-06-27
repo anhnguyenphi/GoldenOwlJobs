@@ -1,0 +1,9 @@
+= stylesheet_link_tag "job_index"
+
+div.content
+	.jobs-content.container
+		h3
+			= @jobs.count 
+			|  Result
+		- @jobs.each do |job|
+			= render 'jobs/content/job', job: job

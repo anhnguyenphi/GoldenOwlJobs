@@ -16,10 +16,6 @@ nav.navbar.navbar-default
 						li = link_to "Employer", new_employer_registration_path, method: :get
 						li = link_to "Employee", new_employee_registration_path, method: :get
 			- else
-				- if !current_employer.nil?
 					li = link_to "Post Jobs", new_job_path, method: :get
 					li = link_to "Profile", employer_path(current_employer), method: :get
 					li = link_to "Log out",  destroy_employer_session_path, method: :delete
-				- else
-					li = link_to "Profile", edit_employee_registration_path(current_employee), method: :get
-					li = link_to "Log out",  destroy_employee_session_path, method: :delete

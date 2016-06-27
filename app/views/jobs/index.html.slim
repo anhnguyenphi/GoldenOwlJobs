@@ -3,9 +3,8 @@
 .banner
 	.container
 		h1 Find Jobs
+		= render 'shared/search_form', jobs: @jobs
 
-		= render 'shared/search_form'
-
-div.jobs
-	- @jobs.each do |job|
-		h3 = link_to(job.name, job_path(job.id))
+div.content
+	.jobs-content.container
+		= render 'jobs/content/show_jobs', jobs: @jobs
