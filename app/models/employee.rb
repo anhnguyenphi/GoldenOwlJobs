@@ -25,4 +25,13 @@ class Employee < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :city
+
+  mount_uploader :avatar, ImageUploader
+  validates_processing_of :avatar
+	validate :avatar_size_validation
+
+	private
+	def avatar_size_validation
+		errors[:avatar] << "should be less than 1 MB" if avatar.size > 1.megabytes
+	end
 end

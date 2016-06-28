@@ -30,9 +30,19 @@ class Employer < ActiveRecord::Base
 
   #associations
   has_many :jobs, dependent: :destroy
+  has_many :images, dependent: :destroy
 
+  accepts_nested_attributes_for :images, allow_destroy: true #, :reject_if => lambda { |t| t['images'].nil? }
   #validate
   validates :name, presence: true
 
+  # mount logo
+  mount_uploader :logo, ImageUploader
+  validates_processing_of :logo
+	validate :logo_size_validation
 
+	private
+	def logo_size_validation
+		errors[:logo] << "should be less than 1 MB" if logo.size > 1.megabytes
+	end
 end
