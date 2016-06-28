@@ -3,6 +3,9 @@
 		= link_to('Edit', edit_job_path(@job.id))
 		|  | 
 		= link_to('Delete', job_path(@job.id,redirect_path: root_path), method: 'delete' )
+
+- if !current_employee.nil?
+	= link_to  "Apply This Job", apply_job_path(employee_id: current_employee[:id], job_id: @job[:id]), method: :post
 br
 .job
 	.job-name

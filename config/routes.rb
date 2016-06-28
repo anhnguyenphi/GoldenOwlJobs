@@ -33,5 +33,7 @@ Rails.application.routes.draw do
 
   # Routing for the services pages of employer
   get 'services_for_employer' => 'employers#info'
+
+  post 'job/apply/:employee_id/:job_id' => 'employees#apply', as: 'apply_job'
   
 end
