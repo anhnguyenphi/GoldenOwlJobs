@@ -17,13 +17,14 @@ class JobsController < ApplicationController
 	end
 
 	def create
+		#render json: params.require(:job).permit(:categories => [])
 		employer = current_employer
 		@job = current_employer.jobs.build(job_params)
 		# check valid infomation
-		valid = (@job.save && 
-			job_categories[:categories] && 
-			build_categies_by_name?(job_categories[:categories]) &&
-			build_cities_by_id?(job_cities[:cities]))
+		valid = (job_categories[:categories] && 
+						build_categies_by_name?(job_categories[:categories]) &&
+						build_cities_by_id?(job_cities[:cities]) &&
+						@job.save)
 
 		if valid
 			flash[:success] = "Post job success!"
@@ -78,7 +79,7 @@ class JobsController < ApplicationController
 
 		def job_params
 			params.require(:job).permit(:name, :negotiable, :min_salary, 
-				:max_salary, :detail, :requirement, :offer)
+				:max_salary, :detail, :requirement, :offer,)
 		end
 
 		def job_categories

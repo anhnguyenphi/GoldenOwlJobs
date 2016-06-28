@@ -5,7 +5,7 @@ module JobsHelper
 	# + RETURN: true if success else false
 	def build_categies_by_name?(categories)
 		categories.each do |c|
-			category = Category.find_or_create_by(name: c) if c.nil?
+			category = Category.find_or_create_by(name: c) if c.present?
 			if category.nil?
 				# if name is not nil
 				return false
