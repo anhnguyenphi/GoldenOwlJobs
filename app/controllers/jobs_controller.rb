@@ -4,7 +4,7 @@ class JobsController < ApplicationController
 	include JobsHelper
 
 	def search
-		@search_key = search_params
+		# search by key filter
 		@jobs = Job.filter(search_params)
 	end
 
@@ -17,20 +17,19 @@ class JobsController < ApplicationController
 	end
 
 	def create
-		#render json: params.require(:job).permit(:categories => [])
 		employer = current_employer
 		@job = current_employer.jobs.build(job_params)
 		# check valid infomation
-		valid = (job_categories[:categories] && 
-						build_categies_by_name?(job_categories[:categories]) &&
-						build_cities_by_id?(job_cities[:cities]) &&
-						@job.save)
+		valid = (job_categories[:categories] &&
+			build_categies_by_name?(job_categories[:categories]) &&
+			build_cities_by_id?(job_cities[:cities]) &&
+			@job.save)
 
 		if valid
 			flash[:success] = "Post job success!"
 			redirect_to @job
 		else
-			flash.now[:success] = "Post job fail!"
+			flash.now[:warning] = "Post job fail!"
 			render 'new'
 		end
 	end
@@ -48,7 +47,16 @@ class JobsController < ApplicationController
 		@job = Job.find(params[:id])
 		@job.assign_attributes(job_params)
 
-		if @job.save
+		@job.categories.clear
+		@job.cities.clear
+		
+		# check valid infomation
+		valid = (job_categories[:categories] && 
+			build_categies_by_name?(job_categories[:categories]) &&
+			build_cities_by_id?(job_cities[:cities]) &&
+			@job.save)
+
+		if valid
 			flash[:success] = "Edit job success!"
 			redirect_to @job
 		else

@@ -2,8 +2,8 @@ class Job < ActiveRecord::Base
 	include Filterable
 	#associations
 	belongs_to :employer
-	has_and_belongs_to_many :categories
-	has_and_belongs_to_many :cities
+	has_and_belongs_to_many :categories, :uniq => true
+	has_and_belongs_to_many :cities, :uniq => true
 	has_many :employees, through: :apply_relationships, source: :employee
 
 	#validate
@@ -41,7 +41,7 @@ class Job < ActiveRecord::Base
 	# query by cities
 	scope :cities, lambda { |cities|
 		joins(:cities)
-		.where("cities.name IN (?)", cities)
+		.where("cities.id IN (?)", cities)
 		.distinct
 	}
 

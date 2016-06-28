@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627084027) do
+ActiveRecord::Schema.define(version: 20160628022145) do
 
   create_table "apply_relationships", force: :cascade do |t|
     t.integer  "employee_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160627084027) do
     t.string   "last_name",              default: "", null: false
     t.string   "address",                default: ""
     t.integer  "city_id"
+    t.string   "avatar"
   end
 
   add_index "employees", ["city_id"], name: "index_employees_on_city_id"
@@ -79,6 +80,13 @@ ActiveRecord::Schema.define(version: 20160627084027) do
 
 # Could not dump table "employers" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
+
+  create_table "images", force: :cascade do |t|
+    t.string  "file",        null: false
+    t.integer "employer_id"
+  end
+
+  add_index "images", ["employer_id"], name: "index_images_on_employer_id"
 
   create_table "jobs", force: :cascade do |t|
     t.string   "name",        default: "",   null: false

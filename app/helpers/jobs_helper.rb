@@ -7,13 +7,14 @@ module JobsHelper
 		categories.each do |c|
 			category = Category.find_or_create_by(name: c) if c.present?
 			if category.nil?
-				# if name is not nil
+				# if c is empty
 				return false
 			else
 				# if the category was exist
 				@job.categories << category
 			end
 		end
+
 		return true
 	end
 
@@ -30,6 +31,7 @@ module JobsHelper
 				@job.cities << city
 			end
 		end
+		
 		return true
 	end
 	

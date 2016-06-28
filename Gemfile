@@ -15,7 +15,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'slim-rails'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -24,8 +23,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# Paperclip file upload
-gem "paperclip", "~> 5.0.0.beta1"
+# carrierwave file upload
+gem 'carrierwave' , github: 'carrierwaveuploader/carrierwave'
+gem "mini_magick"
 # Slim Template
 gem 'slim'
 # Mutiple tagging
