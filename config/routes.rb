@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root "jobs#index"
 
   # Routing for jobs
-  resources :jobs
+  resources :jobs do
+    resources :apply_relationships
+  end
   
   # Routing for employer
   devise_for :employers,
@@ -28,12 +30,7 @@ Rails.application.routes.draw do
     passwords: 'employees/passwords'
   }
 
-  # Routing for catigory
-  resources :categories
-
   # Routing for the services pages of employer
   get 'services_for_employer' => 'employers#info'
-
-  post 'job/apply/:employee_id/:job_id' => 'employees#apply', as: 'apply_job'
   
 end

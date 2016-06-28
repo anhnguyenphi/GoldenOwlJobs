@@ -61,8 +61,10 @@ class Employers::RegistrationsController < Devise::RegistrationsController
   # permit images
   def account_update_params
     images_attribute = params.require(:employer)[:images_attributes]
-    devise_parameter_sanitizer.sanitize(:account_update)
+    if images_attribute.nil?
+      devise_parameter_sanitizer.sanitize(:account_update)
                               .merge(images_attributes: images_attribute)
+    end
   end
 
   # The path used after sign up.
