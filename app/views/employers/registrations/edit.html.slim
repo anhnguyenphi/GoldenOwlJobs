@@ -4,6 +4,12 @@ h2
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
   .field
+    -if resource.logo.present?
+      = image_tag resource.logo.thumb.url, alt: 'logo'
+    br
+    = f.label :logo, 'Logo'
+    = f.file_field :logo
+  .field
     = f.label :name
     br
     = f.text_field :name
@@ -45,13 +51,16 @@ h2
     = f.label :offer
     br
     = f.text_area :offer
-
-    .field
-      = f.label :current_password
-      i
-        | (we need your current password to confirm your changes)
-      br
-      = f.password_field :current_password, autocomplete: "off"
+  .field
+    - resource.images.each do |i|
+      - if !i.new_record?
+        = image_tag i.file.medium.url, alt: 'images'
+    br
+    = f.fields_for :images do |builder|
+      = builder.label :file, 'File upload'
+      = builder.file_field :file
+      - if !builder.object.new_record?
+        p = builder.object.file.file.filename 
   .actions
     = f.submit "Update"
 h3

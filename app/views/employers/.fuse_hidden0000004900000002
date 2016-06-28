@@ -1,4 +1,0 @@
-h2 All Jobs
-
-- @jobs.each do |job|
-	= render 'jobs/job_post', job: job

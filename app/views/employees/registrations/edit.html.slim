@@ -4,6 +4,12 @@ h2
   = resource_name.to_s.humanize
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
+  .from-group
+    -if resource.avatar.present?
+      = image_tag resource.avatar.thumb.url, alt: 'avatar'
+    br
+    = f.label :avatar, 'Avatar'
+    = f.file_field :avatar
   .form-group
     = f.label :email
     = f.email_field :email, class: "form-control", autofocus: true
@@ -22,7 +28,7 @@ h2
   .form-group
     = f.label :city, 'Location'
     select class="form-control" id='employee_city' name="employee[city_id]" 
-      = options_for_select(City.all.collect {|city| [city.name, city.id]}, resource.city.id)
+      = options_for_select(City.all.collect {|city| [city.name, city.id]}, resource.city.nil? ? nil : resource.city.id)
   .form-group
     = f.label :password
     i
@@ -31,11 +37,6 @@ h2
   .form-group
     = f.label :password_confirmation
     = f.password_field :password_confirmation , class: "form-control", autocomplete: "off"
-  .form-group
-    = f.label :current_password
-    i
-      |  (we need your current password to confirm your changes)
-    = f.password_field :current_password, class: "form-control", autocomplete: "off"
   .form-group
     = f.submit "Update", class: "btn btn-primary"
 h3

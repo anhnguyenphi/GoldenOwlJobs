@@ -14,6 +14,7 @@ class Employers::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    3.times { resource.images.build }
     super
   end
 
@@ -53,8 +54,15 @@ class Employers::RegistrationsController < Devise::RegistrationsController
                                                               :offer,
                                                               :address,
                                                               :short_description,
-                                                              :full_description])
+                                                              :full_description,
+                                                              :logo])
+  end
 
+  # permit images
+  def account_update_params
+    images_attribute = params.require(:employer)[:images_attributes]
+    devise_parameter_sanitizer.sanitize(:account_update)
+                              .merge(images_attributes: images_attribute)
   end
 
   # The path used after sign up.
@@ -66,5 +74,9 @@ class Employers::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     super(resource)
+  end
+  # update without current password
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 end
