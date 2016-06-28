@@ -38,8 +38,17 @@ class Employee < ActiveRecord::Base
   validates_processing_of :avatar
 	validate :avatar_size_validation
 
+  # mount resume
+  mount_uploader :resume, ResumeUploader
+  validates_processing_of :resume
+  validate :resume_size_validation
+
 	private
 	def avatar_size_validation
 		errors[:avatar] << "should be less than 1 MB" if avatar.size > 1.megabytes
 	end
+
+  def resume_size_validation
+    errors[:resume] << "should be less than 1 MB" if resume.size > 1.megabytes
+  end
 end

@@ -30,6 +30,12 @@ h2
     select class="form-control" id='employee_city' name="employee[city_id]" 
       = options_for_select(City.all.collect {|city| [city.name, city.id]}, resource.city.nil? ? nil : resource.city.id)
   .form-group
+    = f.label :resume, 'Your CV'
+    = f.file_field :resume
+    - if resource.resume.file.present?
+      span Your current CV: 
+      strong = resource.resume.file.filename 
+  .form-group
     = f.label :password
     i
       |  (leave blank if you don't want to change it)

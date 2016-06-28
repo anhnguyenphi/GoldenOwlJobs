@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628022145) do
+ActiveRecord::Schema.define(version: 20160628080854) do
 
   create_table "apply_relationships", force: :cascade do |t|
     t.integer  "employee_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160628022145) do
     t.string   "address",                default: ""
     t.integer  "city_id"
     t.string   "avatar"
+    t.string   "resume"
   end
 
   add_index "employees", ["city_id"], name: "index_employees_on_city_id"
@@ -87,6 +88,14 @@ ActiveRecord::Schema.define(version: 20160628022145) do
   end
 
   add_index "images", ["employer_id"], name: "index_images_on_employer_id"
+
+  create_table "job_applications", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "job_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "content",     default: ""
+  end
 
   create_table "jobs", force: :cascade do |t|
     t.string   "name",        default: "",   null: false

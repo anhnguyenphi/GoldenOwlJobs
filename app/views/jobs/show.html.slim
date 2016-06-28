@@ -5,7 +5,7 @@
 		= link_to('Delete', job_path(@job.id,redirect_path: root_path), method: 'delete' )
 
 - if !current_employee.nil?
-	= link_to  "Apply This Job", new_job_apply_relationship_path(current_employee.id)
+	= link_to  "Apply This Job", new_job_job_application_path(current_employee.id)
 br
 .job
 	.job-name

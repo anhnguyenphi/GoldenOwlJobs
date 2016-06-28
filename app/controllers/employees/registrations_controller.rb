@@ -53,7 +53,8 @@ class Employees::RegistrationsController < Devise::RegistrationsController
                                                               :first_name, 
                                                               :last_name, 
                                                               :city_id,
-                                                              :avatar])
+                                                              :avatar,
+                                                              :resume])
   end
 
   # The path used after sign up.

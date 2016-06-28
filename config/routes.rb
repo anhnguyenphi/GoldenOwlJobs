@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Routing for jobs
   resources :jobs do
-    resources :apply_relationships
+    resources :job_applications
   end
   
   # Routing for employer
