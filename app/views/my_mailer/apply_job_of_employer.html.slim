@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    p 
+    	| = "From #{@content[:first_name]}"
+    p 
+    	| = "To #{@employer[:name]}"
+		hr /
+		p 
+			| = "#{@content[:content]}"
