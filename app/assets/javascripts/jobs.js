@@ -12,3 +12,5 @@ $("#job_categories").select2({
 })
 
 $("#job_cities").select2()
+
+$("#job_categories_search").select2()

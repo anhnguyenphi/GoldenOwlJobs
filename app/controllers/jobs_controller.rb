@@ -3,6 +3,11 @@ class JobsController < ApplicationController
 	before_action :check_employer_when_delete_update, only: [:destroy, :edit, :update]
 	include JobsHelper
 
+	def search
+		@search_key = search_params
+		@jobs = Job.filter(search_params)
+	end
+
 	def index
 		@jobs = Job.all
 	end
@@ -82,5 +87,9 @@ class JobsController < ApplicationController
 
 		def job_cities
 			params.require(:job).permit(:cities => [])
+		end
+
+		def search_params
+			params.required(:search).permit(:keyword, :categories => [], :cities => [])
 		end
 end
