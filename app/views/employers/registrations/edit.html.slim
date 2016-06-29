@@ -55,12 +55,15 @@ h2
     - resource.images.each do |i|
       - if !i.new_record?
         = image_tag i.file.medium.url, alt: 'images'
-    br
-    = f.fields_for :images do |builder|
-      = builder.label :file, 'File upload'
-      = builder.file_field :file
-      - if !builder.object.new_record?
-        p = builder.object.file.file.filename 
+    #images_upload
+      = f.fields_for :images do |builder|
+        .image_upload
+          = builder.label :file, 'File upload'
+          = builder.file_field :file
+          - if !builder.object.new_record?
+            p = builder.object.file.file.filename
+
+    a href="javascript:;" id="add_new_image" Add New File
   .actions
     = f.submit "Update"
 h3
