@@ -1,1 +1,1 @@
-$("#employee_city").select2()
+$("#employee_city").select2();

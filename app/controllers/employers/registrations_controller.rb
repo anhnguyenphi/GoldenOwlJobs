@@ -14,13 +14,14 @@ class Employers::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    3.times { resource.images.build }
+    resource.images.build
     super
   end
 
   # PUT /resource
   def update
-    super
+    render plain: account_update_params
+    # super
   end
 
   # DELETE /resource
@@ -61,9 +62,11 @@ class Employers::RegistrationsController < Devise::RegistrationsController
   # permit images
   def account_update_params
     images_attribute = params.require(:employer)[:images_attributes]
-    if images_attribute.nil?
+    if images_attribute.present?
       devise_parameter_sanitizer.sanitize(:account_update)
                               .merge(images_attributes: images_attribute)
+    else
+      devise_parameter_sanitizer.sanitize(:account_update)
     end
   end
 
