@@ -20,8 +20,7 @@ class Employers::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    render plain: account_update_params
-    # super
+    super
   end
 
   # DELETE /resource
