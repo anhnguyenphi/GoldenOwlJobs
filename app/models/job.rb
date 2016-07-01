@@ -4,7 +4,7 @@ class Job < ActiveRecord::Base
 	belongs_to :employer
 	has_and_belongs_to_many :categories, :uniq => true
 	has_and_belongs_to_many :cities, :uniq => true
-	has_many :employees, through: :apply_relationships, source: :employee
+	has_many :employees, through: :job_applications, source: :employee
 
 	#validate
 	validates :name, presence: true
@@ -19,9 +19,9 @@ class Job < ActiveRecord::Base
 	# query by keyword
 	scope :keyword, lambda { |keyword|
 		joins(:employer)
-		.where("jobs.name LIKE '%' || ? || '%' 
-						OR employers.name LIKE '%' || ? || '%'", 
-						keyword, 
+		.where("jobs.name LIKE '%' || ? || '%'
+						OR employers.name LIKE '%' || ? || '%'",
+						keyword,
 						keyword)
 		.distinct
 	}

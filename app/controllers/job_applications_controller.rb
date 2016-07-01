@@ -6,10 +6,9 @@ class JobApplicationsController < ApplicationController
 	end
 
 	def create
-		@job_application = JobApplication.new(content: job_application_params[:content], 
+		@job_application = JobApplication.new(content: job_application_params[:content],
 																					employee_id: current_employee.id,
-																					job_id: job_application_params[:job_id],
-																					employer_id: job_application_params[:employer_id])
+																					job_id: job_application_params[:job_id])
 		if @job_application.save
 			flash[:success] = "Apply successful"
 			send_to_employer(job_application_params)
@@ -22,11 +21,10 @@ class JobApplicationsController < ApplicationController
 
 	private
 	def job_application_params
-		params.require(:job_application).permit(:employee_name, 
+		params.require(:job_application).permit(:employee_name,
 																						:employee_email,
-																						:employee_resume, 
+																						:employee_resume,
 																						:content,
-																						:job_id,
-																						:employer_id)
+																						:job_id)
 	end
 end

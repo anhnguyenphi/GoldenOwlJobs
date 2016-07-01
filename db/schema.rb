@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160628080854) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160628080854) do
     t.integer "category_id"
   end
 
-  add_index "categories_jobs", ["category_id"], name: "index_categories_jobs_on_category_id"
-  add_index "categories_jobs", ["job_id"], name: "index_categories_jobs_on_job_id"
+  add_index "categories_jobs", ["category_id"], name: "index_categories_jobs_on_category_id", using: :btree
+  add_index "categories_jobs", ["job_id"], name: "index_categories_jobs_on_job_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -33,15 +36,15 @@ ActiveRecord::Schema.define(version: 20160628080854) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "cities", ["name"], name: "index_cities_on_name", unique: true
+  add_index "cities", ["name"], name: "index_cities_on_name", unique: true, using: :btree
 
   create_table "cities_jobs", id: false, force: :cascade do |t|
     t.integer "city_id"
     t.integer "job_id"
   end
 
-  add_index "cities_jobs", ["city_id"], name: "index_cities_jobs_on_city_id"
-  add_index "cities_jobs", ["job_id"], name: "index_cities_jobs_on_job_id"
+  add_index "cities_jobs", ["city_id"], name: "index_cities_jobs_on_city_id", using: :btree
+  add_index "cities_jobs", ["job_id"], name: "index_cities_jobs_on_job_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -64,9 +67,9 @@ ActiveRecord::Schema.define(version: 20160628080854) do
     t.string   "resume"
   end
 
-  add_index "employees", ["city_id"], name: "index_employees_on_city_id"
-  add_index "employees", ["email"], name: "index_employees_on_email", unique: true
-  add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+  add_index "employees", ["city_id"], name: "index_employees_on_city_id", using: :btree
+  add_index "employees", ["email"], name: "index_employees_on_email", unique: true, using: :btree
+  add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
 
   create_table "employers", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -89,24 +92,27 @@ ActiveRecord::Schema.define(version: 20160628080854) do
     t.string   "logo"
   end
 
-  add_index "employers", ["email"], name: "index_employers_on_email", unique: true
-  add_index "employers", ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
+  add_index "employers", ["email"], name: "index_employers_on_email", unique: true, using: :btree
+  add_index "employers", ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true, using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string  "file",        null: false
     t.integer "employer_id"
   end
 
-  add_index "images", ["employer_id"], name: "index_images_on_employer_id"
+  add_index "images", ["employer_id"], name: "index_images_on_employer_id", using: :btree
 
   create_table "job_applications", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "job_id"
-    t.integer  "employer_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.text     "content",     default: ""
   end
+
+  add_index "job_applications", ["employee_id"], name: "index_job_applications_on_employee_id", using: :btree
+  add_index "job_applications", ["job_id", "employee_id"], name: "index_job_applications_on_job_id_and_employee_id", unique: true, using: :btree
+  add_index "job_applications", ["job_id"], name: "index_job_applications_on_job_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
     t.string   "name",        default: "",   null: false
@@ -121,6 +127,9 @@ ActiveRecord::Schema.define(version: 20160628080854) do
     t.integer  "employer_id"
   end
 
-  add_index "jobs", ["employer_id"], name: "index_jobs_on_employer_id"
+  add_index "jobs", ["employer_id"], name: "index_jobs_on_employer_id", using: :btree
 
+  add_foreign_key "employees", "cities"
+  add_foreign_key "images", "employers"
+  add_foreign_key "jobs", "employers"
 end
