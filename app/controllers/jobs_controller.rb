@@ -34,7 +34,6 @@ class JobsController < ApplicationController
 		end
 	end
 
-
 	def show
 		@job = Job.find(params[:id])
 	end
@@ -49,9 +48,9 @@ class JobsController < ApplicationController
 
 		@job.categories.clear
 		@job.cities.clear
-		
+
 		# check valid infomation
-		valid = (job_categories[:categories] && 
+		valid = (job_categories[:categories] &&
 			build_categies_by_name?(job_categories[:categories]) &&
 			build_cities_by_id?(job_cities[:cities]) &&
 			@job.save)
@@ -86,7 +85,7 @@ class JobsController < ApplicationController
 		end
 
 		def job_params
-			params.require(:job).permit(:name, :negotiable, :min_salary, 
+			params.require(:job).permit(:name, :negotiable, :min_salary,
 				:max_salary, :detail, :requirement, :offer,)
 		end
 

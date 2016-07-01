@@ -4,15 +4,15 @@
 #
 # id:                        integer
 # email:                     string
-# encrypted_password:        string  
+# encrypted_password:        string
 # reset_password_token:      string
 # reset_password_sent_at:    datetime
 # remember_created_at:       datetime
 # sign_in_count              integer
 # current_sign_in_at         datetime
 # last_sign_in_at            datetime
-# current_sign_in_ip         string 
-# last_sign_in_ip            string 
+# current_sign_in_ip         string
+# last_sign_in_ip            string
 # created_at                 datetime
 # updated_at                 datetime
 # first_name                 string
@@ -27,6 +27,7 @@ class Employee < ActiveRecord::Base
 
   # Association
   belongs_to :city
+  
   has_many :job_applications, class_name: "JobApplication",
                           foreign_key: "employee_id",
                           dependent: :destroy
