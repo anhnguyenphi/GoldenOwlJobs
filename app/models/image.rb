@@ -1,4 +1,6 @@
 class Image < ActiveRecord::Base
+	belongs_to :employer
+	validates_presence_of :employer
 	# mount images
   mount_uploader :file, ImageUploader
   validates_processing_of :file

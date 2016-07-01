@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160628080854) do
 
-  create_table "apply_relationships", force: :cascade do |t|
-    t.integer  "employee_id"
-    t.integer  "job_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "apply_relationships", ["employee_id", "job_id"], name: "index_apply_relationships_on_employee_id_and_job_id", unique: true
-  add_index "apply_relationships", ["employee_id"], name: "index_apply_relationships_on_employee_id"
-  add_index "apply_relationships", ["job_id"], name: "index_apply_relationships_on_job_id"
-
   create_table "categories", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -79,8 +68,29 @@ ActiveRecord::Schema.define(version: 20160628080854) do
   add_index "employees", ["email"], name: "index_employees_on_email", unique: true
   add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
 
-# Could not dump table "employers" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "employers", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "name",                   default: "", null: false
+    t.text     "short_description",      default: "", null: false
+    t.text     "full_description",       default: "", null: false
+    t.text     "offer",                  default: "", null: false
+    t.text     "address",                default: "", null: false
+    t.string   "logo"
+  end
+
+  add_index "employers", ["email"], name: "index_employers_on_email", unique: true
+  add_index "employers", ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
 
   create_table "images", force: :cascade do |t|
     t.string  "file",        null: false
