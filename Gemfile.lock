@@ -278,11 +278,21 @@ DEPENDENCIES
   letter_opener
   mini_magick
   pg
+<<<<<<< .merge_file_m4A7sM
+<<<<<<< .merge_file_CqdnX0
 <<<<<<< .merge_file_qQ6Dnz
 =======
   puma
   rack-mini-profiler
 >>>>>>> .merge_file_dPEQRz
+=======
+  puma
+  rack-mini-profiler
+>>>>>>> .merge_file_pOJfL3
+=======
+  puma
+  rack-mini-profiler
+>>>>>>> .merge_file_X0ZsZM
   rails (= 4.2.6)
   rspec-rails
   sass-rails (~> 5.0)
