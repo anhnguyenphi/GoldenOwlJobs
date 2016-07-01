@@ -11,8 +11,8 @@ cities = [{name: 'Hồ Chí Minh'},
 					{name: 'Đà Nẵng'},
 					{name: 'Cần Thơ'}]
 
-cities.each do |city|
-	City.create(city)
+(1..10).each do |i|
+  City.create(name: Faker::Address.city)
 end
 
 Employee.create(email: "lta.anluu@gmail.com", password: "123456", password_confirmation: "123456")
@@ -44,3 +44,6 @@ end
   job_id = i
   JobApplication.create(employee_id: employee_id, job_id: job_id)
 end
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+
