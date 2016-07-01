@@ -3,10 +3,5 @@
 		div class="alert alert-#{key}" role="alert" = value
 	.container
 		= yield
-
-- content_for :stylesheets do
-	= stylesheet_link_tag 'employers/registrations'
-- content_for :scripts do
-	= javascript_include_tag 'employers/registrations'
 	
 = render template: 'layouts/application'
