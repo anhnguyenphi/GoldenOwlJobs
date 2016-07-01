@@ -2,11 +2,6 @@
 	- flash.each do |key, value|
 		div class="alert alert-#{key}" role="alert" = value
 	.container
-		
 		= yield
-- content_for :stylesheets do
-	= stylesheet_link_tag 'employees/registrations'
-- content_for :scripts do
-	= javascript_include_tag 'employees/registrations'
 	
 = render template: 'layouts/application'
