@@ -27,6 +27,7 @@ class Employee < ActiveRecord::Base
 
   # Association
   belongs_to :city
+
   has_many :job_applications, class_name: "JobApplication",
                           foreign_key: "employee_id",
                           dependent: :destroy

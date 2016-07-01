@@ -4,6 +4,11 @@ class Job < ActiveRecord::Base
 	belongs_to :employer
 	has_and_belongs_to_many :categories, :uniq => true
 	has_and_belongs_to_many :cities, :uniq => true
+
+	has_many :job_applications, class_name: "JobApplication",
+                          foreign_key: "job_id",
+                          dependent: :destroy
+
 	has_many :employees, through: :job_applications, source: :employee
 
 	#validate
@@ -50,4 +55,14 @@ class Job < ActiveRecord::Base
 		joins(:employer)
 		.where("employers.name LIKE '%' || ? || '%'", name)
 	}
+
+	private
+		def employer_exists
+			begin
+        Employer.find(self.employer_id)
+      rescue ActiveRecord::RecordNotFound
+        errors.add(:employer_id, "Employer doesn't exists")
+        false
+      end
+		end
 end
