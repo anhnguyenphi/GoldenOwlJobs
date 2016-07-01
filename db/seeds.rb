@@ -14,3 +14,4 @@ cities = [{name: 'Hồ Chí Minh'},
 cities.each do |city|
 	City.create(city)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
