@@ -32,7 +32,7 @@ class Employer < ActiveRecord::Base
   has_many :jobs, dependent: :destroy
   has_many :images, dependent: :destroy
 
-  accepts_nested_attributes_for :images, allow_destroy: true #, :reject_if => lambda { |t| t['images'].nil? }
+  accepts_nested_attributes_for :images, allow_destroy: true
   #validate
   validates :name, presence: true
 

@@ -60,7 +60,9 @@ h2
         .image_upload
           = builder.label :file, 'File upload'
           = builder.file_field :file
-          - if !builder.object.new_record?
+          - unless builder.object.new_record?
+            = builder.label '_destroy'
+            = builder.check_box '_destroy'
             p = builder.object.file.file.filename
 
     a href="javascript:;" id="add_new_image" Add New File

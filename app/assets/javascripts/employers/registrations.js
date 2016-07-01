@@ -1,4 +1,3 @@
-
 $("#add_new_image").click(function() {
 	var num = $(".image_upload").size();
 	var new_input = $(".image_upload").last().clone().attr("class", "image_upload");

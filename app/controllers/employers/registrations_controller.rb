@@ -41,33 +41,36 @@ class Employers::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email,
-                                                      :name,
-                                                      :password,
-                                                      :password_confirmation])
+    devise_parameter_sanitizer.permit(:sign_up, 
+                                      keys: [:email,
+                                              :name,
+                                              :password,
+                                              :password_confirmation])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email,
-                                                              :name,
-                                                              :offer,
-                                                              :address,
-                                                              :short_description,
-                                                              :full_description,
-                                                              :logo])
+    devise_parameter_sanitizer.permit(:account_update, 
+                                      keys: [:email,
+                                            :name,
+                                            :offer,
+                                            :address,
+                                            :short_description,
+                                            :full_description,
+                                            :logo,
+                                            images_attributes: [:_destroy, :id, :file]])
   end
 
   # permit images
-  def account_update_params
-    images_attribute = params.require(:employer)[:images_attributes]
-    if images_attribute.present?
-      devise_parameter_sanitizer.sanitize(:account_update)
-                              .merge(images_attributes: images_attribute)
-    else
-      devise_parameter_sanitizer.sanitize(:account_update)
-    end
-  end
+  # def account_update_params
+  #   images_attribute = params.require(:employer)[:images_attributes]
+  #   if images_attribute.present?
+  #     devise_parameter_sanitizer.sanitize(:account_update)
+  #                             .merge(images_attributes: images_attribute)
+  #   else
+  #     devise_parameter_sanitizer.sanitize(:account_update)
+  #   end
+  # end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
