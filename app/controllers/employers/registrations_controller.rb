@@ -1,4 +1,6 @@
 class Employers::RegistrationsController < Devise::RegistrationsController
+  include Accessible
+  before_action :avoid_conflict_user, only: [:new]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
