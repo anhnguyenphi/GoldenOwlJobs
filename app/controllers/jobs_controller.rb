@@ -1,6 +1,4 @@
 class JobsController < ApplicationController
-	before_action :check_employer_when_create, only: [:new, :create]
-	before_action :check_employer_when_delete_update, only: [:destroy, :edit, :update]
 	include JobsHelper
 
 	def search
@@ -14,11 +12,14 @@ class JobsController < ApplicationController
 
 	def new
 		@job = Job.new
-	end
+		authorize! :create, @job
+	end 
 
 	def create
 		employer = current_employer
 		@job = current_employer.jobs.build(job_params)
+		# authorize
+		authorize! :create, @job
 		# check valid infomation
 		valid = (job_categories[:categories] &&
 			build_categies_by_name?(job_categories[:categories]) &&
@@ -36,10 +37,12 @@ class JobsController < ApplicationController
 
 	def show
 		@job = Job.find(params[:id])
+		authorize! :read, @job
 	end
 
 	def edit
 		@job = Job.find(params[:id])
+		authorize! :update, @job
 	end
 
 	def update
@@ -62,6 +65,7 @@ class JobsController < ApplicationController
 			flash.now[:success] = "Edit job fail!"
 			render 'edit'
 		end
+		authorize! :update, @job
 	end
 
 	def destroy
@@ -71,18 +75,19 @@ class JobsController < ApplicationController
 	end
 
 	private
-		def check_employer_when_create
-			if current_employer.nil?
-				redirect_to root_path
-			end
-		end
 
-		def check_employer_when_delete_update
-			job = Job.find(params[:id])
-			if current_employer.nil? && current_employer[:id] == job[:employer_id]
-				redirect_to root_path
-			end
-		end
+		# def check_employer_when_create
+		# 	if current_employer.nil?
+		# 		redirect_to root_path
+		# 	end
+		# end
+
+		# def check_employer_when_delete_update
+		# 	job = Job.find(params[:id])
+		# 	if current_employer.nil? && current_employer[:id] == job[:employer_id]
+		# 		redirect_to root_path
+		# 	end
+		# end
 
 		def job_params
 			params.require(:job).permit(:name, :negotiable, :min_salary,

@@ -1,5 +1,6 @@
 class Employers::SessionsController < Devise::SessionsController
-# before_action :configure_sign_in_params, only: [:create]
+  include Accessible
+  before_action :avoid_conflict_user, only: [:new]
 
   # GET /resource/sign_in
    def new

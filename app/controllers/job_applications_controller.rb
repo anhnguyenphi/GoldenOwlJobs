@@ -5,9 +5,12 @@ class JobApplicationsController < ApplicationController
 
 	def new
 		@job_application = JobApplication.new
+		authorize! :create, @job_application
 	end
 
 	def create
+		authorize! :create, @job_application
+		# create new job application
 		@job_application = JobApplication.new(content: job_application_params[:content],
 																					employee_id: current_employee.id,
 																					job_id: job_application_params[:job_id])
