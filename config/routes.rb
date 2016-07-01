@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   # Routing for jobs
   resources :jobs do
-    resources :job_applications
+    resources :job_applications, only: [:new, :create, :destroy]
   end
-  
+
   # Routing for employer
   devise_for :employers,
               controllers: {
@@ -34,5 +34,5 @@ Rails.application.routes.draw do
 
   # Routing for the services pages of employer
   get 'services_for_employer' => 'employers#info'
-  
+
 end
