@@ -3,10 +3,7 @@ html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
   body
-    p 
-    	| = "From #{@employer[:first_name]}"
-    p 
-    	| = "To #{@employer[:name]}"
-		hr /
-		p 
-			| = "#{@content[:content]}"
+    h1
+      = "Apply for #{@job[:name]}"
+    p
+      = "#{@content[:content]}"

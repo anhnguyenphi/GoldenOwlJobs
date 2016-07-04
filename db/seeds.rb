@@ -14,6 +14,8 @@ cities = [{name: 'Hồ Chí Minh'},
 (1..10).each do |i|
   City.create(name: Faker::Address.city)
 end
+Employee.create(email: "abc@xyz.com", password: "123456", password_confirmation: "123456")
+Employer.create(email: "abc@xyz.com", password: "123456", password_confirmation: "123456",name: "FPT software")
 
 Employee.create(email: "lta.anluu@gmail.com", password: "123456", password_confirmation: "123456")
 Employer.create(email: "lta.anluu@gmail.com", password: "123456", password_confirmation: "123456",name: "AnLuu Company")

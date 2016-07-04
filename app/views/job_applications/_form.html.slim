@@ -4,11 +4,11 @@
 	.form-gorup
 		= f.label :employee_name, 'Your name'
 		= f.text_field :employee_name, value: "#{current_employee.first_name}",
-										class: 'form-control'
+										class: 'form-control', disabled: true
 	.form-gorup
 		= f.label :employee_email, 'Your email'
 		= f.text_field :employee_email, value: "#{current_employee.email}",
-										class: 'form-control'
+										class: 'form-control', disabled: true
 	.form-group
 		= f.label :employee_resume, 'Your CV'
 		= f.file_field :employee_resume

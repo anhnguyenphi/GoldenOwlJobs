@@ -34,7 +34,7 @@ end
 
 group :development do
   gem 'puma'
-  # gem 'better_errors'
+  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rack-mini-profiler', require: false
   gem 'letter_opener'
