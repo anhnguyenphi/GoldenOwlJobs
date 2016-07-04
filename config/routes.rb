@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   root "jobs#index"
 
   # Routing for jobs
+  get 'load_more_jobs', to: 'jobs#load_more', as: 'load_more_jobs'
+
   resources :jobs do
     resources :job_applications, only: [:new, :create, :destroy]
   end
+
+  post 'search' => 'jobs#search'
 
   # Routing for employer
   devise_for :employers,
@@ -20,11 +24,12 @@ Rails.application.routes.draw do
                               confirmations: 'employers/confirmations'
                             }
 
-  resources :employers, only: [:show, :index] do
-    get 'jobmanager' => 'employers#manage'
-  end
+  resources :companies, only: [:show, :index]
 
-  post 'search' => 'jobs#search'
+  namespace :employers do
+    resources :job_applications, only: [:show, :index]
+    resources :jobs
+  end
 
   # Routing for employee
   devise_for :employees, controllers: {

@@ -1,5 +1,5 @@
 - @job_applications.each do |ja|
-	.jobApplications
+	.employee_application
 		h4
 			= link_to ja.job.name, job_path(ja.job.id)
 		= link_to  "Cancel", employees_job_application_path(job_id: ja.job.id, id: current_employee.id), method: :delete

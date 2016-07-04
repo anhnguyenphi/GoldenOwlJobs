@@ -36,8 +36,13 @@ class JobApplicationsController < ApplicationController
 
 	private
 		def job_application_params
-			params.require(:job_application).permit(:employee_resume,
-																							:content,
-																							:job_id)
+			if params[:resume] == "current"
+				params.require(:job_application).permit(:content,
+																								:job_id)
+			elsif params[:resume] == "new"
+				params.require(:job_application).permit(:employee_resume,
+																								:content,
+																								:job_id)
+			end		
 		end
 end

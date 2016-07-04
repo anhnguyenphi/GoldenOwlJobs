@@ -16,7 +16,7 @@ class JobApplication < ActiveRecord::Base
 
   scope :employee, lambda { |employee_id| where("employee_id = ?", employee_id)  }
 
-  scope :employer, lambda { |employee_id| 
+  scope :employer, lambda { |employer_id| 
     joins(:job)
     .where("jobs.employer_id = ?", employer_id)
   }
