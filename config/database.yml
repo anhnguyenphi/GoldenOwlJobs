@@ -7,8 +7,8 @@ default: &default
 development:
   <<: *default
   database: development_job
-  username: root
-  password: root
+  username: jobdb
+  password: 123456
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -17,8 +17,8 @@ development:
 test:
   <<: *default
   database: test_job
-  username: root
-  password: root
+  username: jobdb
+  password: 123456
   host: localhost
 
 production:

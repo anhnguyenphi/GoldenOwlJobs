@@ -4,13 +4,9 @@ class Job < ActiveRecord::Base
 	belongs_to :employer
 	has_and_belongs_to_many :categories, :uniq => true
 	has_and_belongs_to_many :cities, :uniq => true
-
-
 	has_many :job_applications, class_name: "JobApplication",
                           foreign_key: "job_id",
                           dependent: :destroy
-
-
 	has_many :employees, through: :job_applications, source: :employee
 
 	#validate

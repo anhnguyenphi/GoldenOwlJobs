@@ -34,7 +34,7 @@ end
 
 group :development do
   gem 'puma'
-  # gem 'better_errors'
+  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rack-mini-profiler', require: false
   gem 'letter_opener'
@@ -54,6 +54,7 @@ gem "mini_magick"
 gem 'slim'
 gem "select2-rails"
 gem 'devise'
+gem 'cancancan', '~> 1.10'
 gem 'friendly_id', '~> 5.1.0'
 gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'kaminari'
