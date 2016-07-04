@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-
+  # routing for admin management
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   root "jobs#index"
 
   # Routing for jobs
@@ -31,6 +32,10 @@ Rails.application.routes.draw do
     sessions: 'employees/sessions',
     passwords: 'employees/passwords'
   }
+
+  namespace :employees do
+    resources :job_applications, only: [:show, :index, :destroy]
+  end
 
   # Routing for the services pages of employer
   get 'services_for_employer' => 'employers#info'

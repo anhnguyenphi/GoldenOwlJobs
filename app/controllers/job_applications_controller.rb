@@ -1,6 +1,6 @@
 class JobApplicationsController < ApplicationController
 	include JobApplicationsHelper
-	before_action :authenticate_employee!
+	before_action :authenticate_employee!, only: [:new, :create, :destroy]
 
 	def new
 		@job_application = JobApplication.new
@@ -27,10 +27,10 @@ class JobApplicationsController < ApplicationController
 	end
 
 	def destroy
-
-		@job_apply = current_employee.job_applications.find_by(job_id: params[:job_id])
-		@job_apply.destroy
-
+		@job_application = current_employee.job_applications.find_by(job_id: params[:job_id])
+		authorize! :destroy, @job_application
+		
+		@job_application.destroy
 		redirect_to job_path(params[:job_id])
 	end
 
