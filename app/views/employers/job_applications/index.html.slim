@@ -1,0 +1,7 @@
+h1 Applications
+- @job_applications.each do |ja|
+	.employer_application
+		h3
+			= ja.job.name
+		p	
+			= "Employee email: #{ja.employee.email}"
