@@ -11,7 +11,17 @@
 										class: 'form-control', disabled: true
 	.form-group
 		= f.label :employee_resume, 'Your CV'
-		= f.file_field :employee_resume
+		.resume
+			.resume_choose
+				= radio_button_tag :resume, 'current', checked: true
+				a[href="#{current_employee.resume.url}", target= '_blank'] = current_employee.resume.file.filename 
+			.resume_choose
+				= radio_button_tag :resume, 'new'
+				= f.file_field :employee_resume
+				span class="notice"
+			.description
+				p
+					| You can only attach .doc, .docx, and .pdf files that are less than 1048KB in size
 	.form-group
 		= f.label :content
 		= f.text_area :content, rows: 5, class: 'form-control'

@@ -18,8 +18,19 @@ nav.navbar.navbar-default
 			- else
 				- if !current_employer.nil?
 					li = link_to "Post Jobs", new_job_path, method: :get
-					li = link_to "Profile", employer_path(current_employer), method: :get
-					li = link_to "Log out",  destroy_employer_session_path, method: :delete
+					li.dropdown
+						a.dropdown-toggle[href="#" data-toggle="dropdown"]
+							= current_employer.name
+						ul.dropdown-menu
+							li = link_to "Manage Applications", employers_job_applications_path
+							li = link_to "Manage Jobs", employers_jobs_path
+							li = link_to "Profile", edit_employer_registration_path
+							li = link_to "Log out",  destroy_employer_session_path, method: :delete
 				- else
-					li = link_to "Profile", edit_employee_registration_path(current_employee), method: :get
-					li = link_to "Log out",  destroy_employee_session_path, method: :delete
+					li.dropdown
+						a.dropdown-toggle[href="#" data-toggle="dropdown"]
+							= current_employee.first_name
+						ul.dropdown-menu
+							li = link_to "Profile", edit_employee_registration_path, method: :get
+							li = link_to 'Applied Jobs', employees_job_applications_path
+							li = link_to "Log out",  destroy_employee_session_path, method: :delete

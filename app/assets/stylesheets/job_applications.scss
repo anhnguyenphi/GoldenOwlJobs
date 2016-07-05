@@ -1,3 +1,22 @@
-// Place all the styles related to the job_applications controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.resume {
+	.resume_choose {
+		display: block;
+		input[type='radio'] {
+			display: inline-block;
+			margin: 10px;
+		}
+		input[type='file'] {
+			display: inline-block;
+		}
+		.notice_valid {
+			color: green;
+		}
+		.notice_invalid {
+			color: red;
+		}
+	}
+
+	.description p {
+		color: #999!important;
+	}
+}

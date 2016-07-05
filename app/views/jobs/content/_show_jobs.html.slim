@@ -1,8 +1,2 @@
-.nav.navbar.navbar-default
-	ul.nav.navbar-nav.navbar-left
-		li.active = link_to "New Jobs", root_path
-		li = link_to "Top Jobs", root_path
-		li = link_to "Recommended Jobs", root_path
-
-- jobs.each do |job|
+- @jobs.each do |job|
 	= render 'jobs/content/job', job: job
