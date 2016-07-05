@@ -32,6 +32,14 @@ h2
   .form-group
     = f.label :resume, 'Your CV'
     = f.file_field :resume
+    span class="alert_input" id="resume_input_invalid" style="display:none;color:red;"
+      <i class="fa fa-exclamation" aria-hidden="true"></i>
+      | Please attach a .doc .docx .pdf file
+      br
+    span class="alert_input" id="resume_input_valid" style="display:none;color:green;"
+      <i class="fa fa-check" aria-hidden="true"></i>
+      | Good choice
+      br
     - if resource.resume.file.present?
       strong Your current CV: 
       a[href="#{resource.resume.url}", target="_blank"] = resource.resume.file.filename 
