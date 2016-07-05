@@ -1,6 +1,7 @@
 class JobApplicationsController < ApplicationController
 	include JobApplicationsHelper
 	before_action :authenticate_employee!, only: [:new, :create, :destroy]
+	@@RESUME_FORMAT = [".pdf", ".doc", ".docx"]
 
 	def new
 		@job_application = JobApplication.new
@@ -15,7 +16,7 @@ class JobApplicationsController < ApplicationController
 		# authorize
 		authorize! :create, @job_application
 		# save
-		if @job_application.save
+		if check_resume_extension && @job_application.save
 			flash[:success] = "Apply successful"
 			send_to_employer(job_application_params)
 			@job = Job.find(@job_application.job_id)
@@ -44,5 +45,13 @@ class JobApplicationsController < ApplicationController
 																								:content,
 																								:job_id)
 			end		
+		end
+
+		def check_resume_extension
+			if job_application_params[:employee_resume].present?
+				@@RESUME_FORMAT.include? File.extname(job_application_params[:employee_resume].original_filename)
+			else
+				return true
+			end
 		end
 end
