@@ -1,26 +1,48 @@
-.row
-	.col-md-3
-		.logo
-			= image_tag 'icon/logo.png'
+.job-content
+  .row
+    .col-xs-1.center-vertical
+      .logo-company.ratio1_1
+        = image_tag asset_path 'icon/logo.png'
+    .col-xs-7
+      .description.space-between
+        .job-title
+          h2 = link_to job.name, job_path(job), method: :get
+        .company-name
+          h3 = link_to job.employer.name, "#"
+        .tags-job
+          - job.categories.each do |category|
+            a[href="#"]  = category.name
+    .col-xs-2.center-vertical
+      .location
+        .icon-location
+          = image_tag asset_path 'icon/location-grey.png'
+        .location-name
+          p Ho Chi Minh
+          / - job.cities.each do |city|
+          /   p = city.name
+    .col-xs-2.center-vertical
+      .job-info
+        .job-salary
+          p $ 1000
+        .job-type
+          p FULL-TIME
 
-	.col-md-9
-		.row
-			.col-md-8
-				.job-descriptions
-					h3.title = link_to job.name, job_path(job), method: :get
-					.row.posted-time
-						.col-md-1
-							= image_tag 'icon/calendar.png'
-						.col-md-5
-							p 
-								| Posted: 
-								= job[:created_at].strftime("%d/%m/%Y")
-					ul.tag
-						- job.categories.each do |category|
-							li 
-								a[href="#"] = category.name
+      / .col-md-8
+      /   .job-descriptions
+      /     h3.title = link_to job.name, job_path(job), method: :get
+      /     .row.posted-time
+      /       .col-md-1
+      /         = image_tag 'icon/calendar.png'
+      /       .col-md-5
+      /         p
+      /           | Posted:
+      /           = job[:created_at].strftime("%d/%m/%Y")
+      /     ul.tag
+      /       - job.categories.each do |category|
+      /         li
+      /           a[href="#"] = category.name
 
-			.col-md-4
-				.location-salary
-					p = job.cities.map{|c| c.name}
-					p 1000$
+      / .col-md-4
+      /   .location-salary
+      /     p = job.cities.map{|c| c.name}
+      /     p 1000$

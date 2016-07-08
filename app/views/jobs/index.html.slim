@@ -1,8 +1,45 @@
-.banner
-	.container
-		h1 Find Jobs
-		= render 'shared/search_form', jobs: @jobs
+#banner-job
+  = image_tag asset_path('background/job-bg.jpg')
+  #background
+  .search-element
+    .container
+      .title
+        h1 finds jobs now!
+      = render 'shared/search_form', jobs: @jobs
 
-div.content
-	.jobs-content.container
-		= render 'jobs/content/show_jobs', jobs: @jobs
+#jobs-information
+  .row
+    .col-lg-2
+    .col-lg-8.show-content
+      .title
+        h1 Find Your Jobs Here
+      .nav
+        ul
+          li.active = link_to "New Jobs", "#"
+          li = link_to "Top Jobs", "#"
+          li = link_to "Recommended Jobs", "#"
+      .content
+        .list-jobs
+          - @jobs.each do |job|
+            = render 'jobs/content/job', job: job
+        .button-seemore
+          a id="loadMore" href="javascript:;" Show More
+    .col-lg-2
+
+/ #counter-information
+/   .container
+/     .row
+/       .col-lg-4
+/       .col-lg-4
+/       .col-lg-4
+/ div.content
+/ 	.jobs-content.container
+/ 		.nav.navbar.navbar-default
+/ 			ul.nav.navbar-nav.navbar-left
+/ 				li.active = link_to "New Jobs", root_path
+/ 				li = link_to "Top Jobs", root_path
+/ 				li = link_to "Recommended Jobs", root_path
+/ 		#jobs
+/ 			= render 'jobs/content/show_jobs'
+/ 		.paginate
+/ 			a id="loadMore" href="javascript:;" Show More

@@ -6,13 +6,15 @@ class MyMailer < Devise::Mailer
     @employee = employee
     
   	# @content has :employee_name, :employee_email, :content
-  	@content = mail.permit(:content, :employee_resume)
+  	@content = mail.permit(:content)
   
     email_with_name = %("#{@employee.first_name}" <#{@employee.email}>)
 
-    cv = @content[:employee_resume]
-  	attachments["#{cv.original_filename}"] = File.read(cv.path)
-  	mail(from: email_with_name,
+    # CV attachment
+    @cv = mail[:employee_resume].present? ? mail[:employee_resume] : @employee.resume.file
+  	attachments["#{@cv.original_filename}"] = File.read(@cv.path)
+  	
+    mail(from: email_with_name,
   			 to: @employer.email,
   			 subject: "Apply for #{@job.name}")
   end

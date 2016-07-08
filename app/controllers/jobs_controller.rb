@@ -7,7 +7,12 @@ class JobsController < ApplicationController
 	end
 
 	def index
-		@jobs = Job.all
+		@jobs = Job.page(params[:page]).per(10)
+	end
+
+	def load_more
+		@jobs = Job.page(params[:page]).per(10)
+		render '/jobs/more', layout: false
 	end
 
 	def new
@@ -51,7 +56,8 @@ class JobsController < ApplicationController
 
 		@job.categories.clear
 		@job.cities.clear
-
+		# authorize
+		authorize! :update, @job
 		# check valid infomation
 		valid = (job_categories[:categories] &&
 			build_categies_by_name?(job_categories[:categories]) &&
@@ -65,11 +71,13 @@ class JobsController < ApplicationController
 			flash.now[:success] = "Edit job fail!"
 			render 'edit'
 		end
-		authorize! :update, @job
 	end
 
 	def destroy
 		@job = Job.find(params[:id])
+		#authorize
+		authorize! :update, @job
+
 		@job.destroy
 		redirect_to params[:redirect_path]
 	end

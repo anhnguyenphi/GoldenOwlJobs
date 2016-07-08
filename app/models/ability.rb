@@ -13,6 +13,7 @@ class Ability
     elsif user.instance_of?(Employer)
         can [:read, :create] , Job
         can [:update, :destroy], Job, employer_id: user.id
+        can [:read], JobApplication, job: { employer_id: user.id }
     elsif user.instance_of?(AdminUser)
         can :manage, :all
     end

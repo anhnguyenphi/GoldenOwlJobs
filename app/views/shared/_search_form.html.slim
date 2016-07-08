@@ -1,17 +1,15 @@
 .search-box
-	= form_for(:search, url: search_path) do |f|
-		.row
-			.col-lg-11.keyword.col-xs-11
-				= f.text_field :keyword, placeholder: "Input keyword"
-				.icon-search
-					= f.submit "Search", type: :image, src: image_path("icon/search.png")
+  = form_for(:search, url: search_path) do |f|
+    .keyword
+      = f.text_field :keyword, placeholder: "Enter job title, company ..."
+      .icon-search
+        = f.submit "Search", type: :image, src: image_path("icon/search.png")
+    .row
+      .select-group
+        .col-lg-6.categories-key
+          select class="form-control" id="job_categories" name="search[categories][]" multiple="true"
+            = options_for_select(Category.all.collect {|category| [category.name, category.name]})
 
-		.row
-			.select-group
-				.col-lg-6.categories-key
-					select class="form-control" id="job_categories_search" name="search[categories][]" multiple="true"
-						= options_for_select(Category.all.collect {|category| [category.name, category.name]})
-
-				.col-lg-6.city-key
-					select class="form-control" id='job_cities' name="search[cities][]" multiple="true"
-						= options_for_select(City.all.collect {|city| [city.name, city.id]})
+        .col-lg-6.city-key
+          select class="form-control" id='job_cities' name="search[cities][]" multiple="true"
+            = options_for_select(City.all.collect {|city| [city.name, city.id]})

@@ -1,6 +1,6 @@
 class JobApplicationsController < ApplicationController
 	include JobApplicationsHelper
-	before_action :authenticate_employee!
+	before_action :authenticate_employee!, only: [:new, :create, :destroy]
 
 	def new
 		@job_application = JobApplication.new
@@ -27,17 +27,22 @@ class JobApplicationsController < ApplicationController
 	end
 
 	def destroy
-
-		@job_apply = current_employee.job_applications.find_by(job_id: params[:job_id])
-		@job_apply.destroy
-
+		@job_application = current_employee.job_applications.find_by(job_id: params[:job_id])
+		authorize! :destroy, @job_application
+		
+		@job_application.destroy
 		redirect_to job_path(params[:job_id])
 	end
 
 	private
 		def job_application_params
-			params.require(:job_application).permit(:employee_resume,
-																							:content,
-																							:job_id)
+			if params[:resume] == "current"
+				params.require(:job_application).permit(:content,
+																								:job_id)
+			elsif params[:resume] == "new"
+				params.require(:job_application).permit(:employee_resume,
+																								:content,
+																								:job_id)
+			end		
 		end
 end

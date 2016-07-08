@@ -10,13 +10,22 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require select2
- *= require_tree .
- *= require_self
  *= require bootstrap.min
+ *= require select2
+ *= require_self
+ *= require_tree .
  */
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
  * {
  	padding: 0;
  	margin: 0;
+  box-sizing: border-box;
  }
+
+#main-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+}

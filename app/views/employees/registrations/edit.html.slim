@@ -33,8 +33,8 @@ h2
     = f.label :resume, 'Your CV'
     = f.file_field :resume
     - if resource.resume.file.present?
-      span Your current CV: 
-      strong = resource.resume.file.filename 
+      strong Your current CV: 
+      a[href="#{resource.resume.url}", target="_blank"] = resource.resume.file.filename 
   .form-group
     = f.label :password
     i
