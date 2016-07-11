@@ -13,10 +13,10 @@
  *= require bootstrap.min
  *= require select2
  *= require_self
+ *= require font-awesome
  *= require_tree .
  */
 
-@import "font-awesome-sprockets";
 @import "font-awesome";
 
  * {
