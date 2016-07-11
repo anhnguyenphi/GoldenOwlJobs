@@ -12,12 +12,10 @@
  *
  *= require bootstrap.min
  *= require select2
- *= require_self
  *= require font-awesome
+ *= require_self
  *= require_tree .
  */
-
-@import "font-awesome";
 
  * {
  	padding: 0;

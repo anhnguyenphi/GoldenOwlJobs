@@ -8,11 +8,14 @@
 		input[type='file'] {
 			display: inline-block;
 		}
-		.notice_valid {
-			color: green;
+		span {
+			display: none;
 		}
-		.notice_invalid {
+		span.alert_input_invalid {
 			color: red;
+		}
+		span.alert_input_valid {
+			color: green;
 		}
 	}
 

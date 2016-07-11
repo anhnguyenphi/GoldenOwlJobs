@@ -18,7 +18,12 @@
 			.resume_choose
 				= radio_button_tag :resume, 'new'
 				= f.file_field :employee_resume
-				span class="notice"
+				span class="alert_input_invalid" id="resume_input_invalid" 
+					<i class="fa fa-exclamation" aria-hidden="true"></i>
+					| Please attach a .doc .docx .pdf file
+				span class="alert_input_valid" id="resume_input_valid"
+					<i class="fa fa-check" aria-hidden="true"></i>
+					| Good choice
 			.description
 				p
 					| You can only attach .doc, .docx, and .pdf files that are less than 1048KB in size
