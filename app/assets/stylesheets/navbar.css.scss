@@ -1,0 +1,65 @@
+#nav-bar {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  .navbar {
+    border-radius: 0px;
+  }
+
+  .logo-web {
+    a {
+      font-size: 30px;
+      color: #fff;
+    }
+  }
+
+  ul {
+    margin: 0;
+    li {
+      margin: 0 20px;
+
+      a {
+        font-size: 18px;
+        color: #fff;
+        border-bottom: 3px solid rgba(0,0,255,0);
+        font-weight: 600;
+
+        &:hover {
+          background-color: rgba(255,255,255,0.3);
+          color: #33CCFF;
+        }
+      }
+    }
+
+    .active {
+      border-bottom: 3px solid #00f;
+
+      a {
+        color: #33CCFF;
+      }
+    }
+  }
+
+  .button-signup {
+    padding: 5px 0px;
+    a {
+        font-size: 18px;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        background-color: #33CCFF;
+        border-radius: 2px;
+        font-weight: 600;
+
+        &:hover {
+          background-color: #fff;
+          color: #33CCFF;
+          font-weight: 600;
+        }
+      }
+    }
+}
+
+.navbar-fixed {
+  background-color: rgba(0,0,0,0.7);
+}

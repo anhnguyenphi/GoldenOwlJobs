@@ -20,4 +20,10 @@
  * {
  	padding: 0;
  	margin: 0;
+  box-sizing: border-box;
  }
+
+#main-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+}

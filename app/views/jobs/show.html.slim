@@ -1,28 +1,33 @@
-- if !current_employer.nil? && current_employer[:id] == @job[:employer_id]
-	.edit-delete
-		= link_to('Edit', edit_job_path(@job.id))
-		|  |
-		= link_to('Delete', job_path(@job.id,redirect_path: root_path), method: 'delete' )
+/ - if !current_employer.nil? && current_employer[:id] == @job[:employer_id]
+/   .edit-delete
+/     = link_to('Edit', edit_job_path(@job.id))
+/     |  |
+/     = link_to('Delete', job_path(@job.id,redirect_path: root_path), method: 'delete' )
 
-- if !current_employee.nil?
-	- if @job.id.in?(current_employee.jobs.select(:id).map{|job| job.id})
-		= link_to  "Cancel Job Application", job_job_application_path(job_id: @job.id, id: current_employee.id), method: :delete
-	- else
-		= link_to  "Apply This Job", new_job_job_application_path(@job.id)
-br
-.job
-	.job-name
-		h2 = @job[:name]
+/ - if !current_employee.nil?
+/   - if @job.id.in?(current_employee.jobs.select(:id).map{|job| job.id})
+/     = link_to  "Cancel Job Application", job_job_application_path(job_id: @job.id, id: current_employee.id), method: :delete
+/   - else
+/     = link_to  "Apply This Job", new_job_job_application_path(@job.id)
+/ br
+/ .job
+/   .job-name
+/     h2 = @job[:name]
 
-	.job-details
-		h3 Detail
-		p = simple_format(@job[:detail])
+/   .job-details
+/     h3 Detail
+/     p = simple_format(@job[:detail])
 
-	.job-requirement
-		h3 Requirement
-		p = simple_format @job[:requirement]
+/   .job-requirement
+/     h3 Requirement
+/     p = simple_format @job[:requirement]
 
 
-	.job-offer
-		h3 Offer
-		p = simple_format @job[:offer]
+/   .job-offer
+/     h3 Offer
+/     p = simple_format @job[:offer]
+
+section#banner-show-job
+
+section#job-information
+  .container

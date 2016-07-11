@@ -32,18 +32,18 @@ ActiveRecord::Schema.define(version: 20160701070537) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email", default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count", default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20160701070537) do
   add_index "categories_jobs", ["job_id"], name: "index_categories_jobs_on_job_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,21 +80,21 @@ ActiveRecord::Schema.define(version: 20160701070537) do
   add_index "cities_jobs", ["job_id"], name: "index_cities_jobs_on_job_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email", default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
-    t.string   "address",                default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "first_name", default: "", null: false
+    t.string   "last_name", default: "", null: false
+    t.string   "address", default: ""
     t.integer  "city_id"
     t.string   "avatar"
     t.string   "resume"
@@ -105,23 +105,23 @@ ActiveRecord::Schema.define(version: 20160701070537) do
   add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
 
   create_table "employers", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email", default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count", default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "name",                   default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name", default: "", null: false
     t.text     "short_description",      default: "", null: false
     t.text     "full_description",       default: "", null: false
-    t.text     "offer",                  default: "", null: false
-    t.text     "address",                default: "", null: false
+    t.text     "offer", default: "", null: false
+    t.text     "address", default: "", null: false
     t.string   "logo"
   end
 
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20160701070537) do
   add_index "employers", ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true, using: :btree
 
   create_table "images", force: :cascade do |t|
-    t.string  "file",        null: false
+    t.string  "file", null: false
     t.integer "employer_id"
   end
 
@@ -138,9 +138,9 @@ ActiveRecord::Schema.define(version: 20160701070537) do
   create_table "job_applications", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "job_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.text     "content",     default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "content", default: ""
   end
 
   add_index "job_applications", ["employee_id"], name: "index_job_applications_on_employee_id", using: :btree
@@ -148,15 +148,15 @@ ActiveRecord::Schema.define(version: 20160701070537) do
   add_index "job_applications", ["job_id"], name: "index_job_applications_on_job_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
-    t.string   "name",        default: "",   null: false
-    t.boolean  "negotiable",  default: true
-    t.integer  "min_salary",  default: 0
+    t.string   "name", default: "", null: false
+    t.boolean  "negotiable", default: true
+    t.integer  "min_salary", default: 0
     t.integer  "max_salary",  default: 0
     t.text     "detail",      default: "",   null: false
     t.text     "requirement", default: "",   null: false
     t.text     "offer",       default: "",   null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "employer_id"
   end
 

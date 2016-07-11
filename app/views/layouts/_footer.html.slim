@@ -1,15 +1,76 @@
 footer
-	.col-md-4.about
-		h3 About Jobs
-		
-		p = link_to "About us", root_path
-		p = link_to "Contact us", root_path
+  .subscribe
+    = image_tag asset_path('background/footer-bg.jpg')
+    #background
+    #content
+      .title
+        h1 Subscribe
+      .description
+        p Get weekly top new jobs delivered to your inbox
+      .row
+        .col-lg-2
+        .col-lg-8
+          .form-subscribe
+            = form_for(:subscribe, url: root_path) do |f|
+              = f.email_field :email, placeholder: 'Email', class: 'input-email'
+              = f.submit 'subscribe', class: 'button-subscribe'
+        .col-lg-2
+  .site-footer
+    .information.container
+      .row
+        .col-lg-5
+          .about-box
+            .title
+              h1 About
+            .description
+              p "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        .col-lg-7
+          .row
+            .col-lg-6.col-xs-5
+              .tools-box
+                .title
+                  h1 Tools
+                p = link_to 'About us', '#'
+                p = link_to 'Contact us', '#'
+                p = link_to 'My Account', '#'
+                p = link_to 'My Jobs', '#'
+            .col-lg-6.col-xs-7
+              .social-box
+                .title
+                  h1 Subscribe us
+                ul.social-icons
+                  li
+                    a[href='#' class='facebook']
+                      i.fa.fa-facebook
+                  li
+                    a[href='#' class='twitter']
+                      i.fa.fa-twitter
+                  li
+                    a[href='#' class='linkedin']
+                      i.fa.fa-linkedin
+                  li
+                    a[href='#' class='google-plus']
+                      i.fa.fa-google-plus
+                / a[href="#"]
+                /   = image_tag asset_path('icon/facebook.png')
+                / a[href="#"]
+                /   = image_tag asset_path('icon/twitter.png')
+                / a[href="#"]
+                /   = image_tag asset_path('icon/google-plus.png')
+    / .copyright
 
-	.col-md-4
-		h3 Tools
+/ footer
+/   .col-md-4.about
+/     h3 About Jobs
 
-		p = link_to "My Account", root_path
-		p = link_to "My Jobs", root_path
+/     p = link_to "About us", root_path
+/     p = link_to "Contact us", root_path
 
-	.col-md-4
-		h3 Subcribe us
+/   .col-md-4
+/     h3 Tools
+
+/     p = link_to "My Account", root_path
+/     p = link_to "My Jobs", root_path
+
+/   .col-md-4
+/     h3 subscribe us

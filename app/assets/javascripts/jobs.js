@@ -12,7 +12,7 @@ $(function() {
 	  		page: page
 	  	},
 	  	success: function(result) {
-	  		$("#jobs").append(result);
+	  		$(".list-jobs").append(result);
 	  		$("a#loadMore").html("Show More");
 	  	}
 	  });
@@ -27,12 +27,20 @@ $(function() {
 	})
 
 	$("#job_categories").select2({
+		placeholder: "Categories",
+		allowClear: true,
 	  tags: true
 	})
 
-	$("#job_cities").select2()
+	$("#job_cities").select2({
+		placeholder: "Cities",
+		allowClear: true,
+	  // tags: true
+	})
 
-	$("#job_categories_search").select2()
+	$("#job_cities_search").select2({
+		placeholder: "Cities",
+		allowClear: true,
+	  tags: true
+	})
 })
-
-
